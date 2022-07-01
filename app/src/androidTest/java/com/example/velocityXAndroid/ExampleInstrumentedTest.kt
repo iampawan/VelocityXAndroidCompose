@@ -1,4 +1,4 @@
-package com.example.jc1
+package com.example.velocityXAndroid
 
 import androidx.test.platform.app.InstrumentationRegistry
 import androidx.test.ext.junit.runners.AndroidJUnit4

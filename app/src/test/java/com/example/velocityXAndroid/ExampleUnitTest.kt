@@ -1,4 +1,4 @@
-package com.example.jc1
+package com.example.velocityXAndroid
 
 import org.junit.Test
 

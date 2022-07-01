@@ -1,4 +1,4 @@
-package com.example.jc1.ui.theme
+package com.example.velocityXAndroid.ui.theme
 
 import androidx.compose.ui.graphics.Color
 import dev.codepur.velocityx.Vx

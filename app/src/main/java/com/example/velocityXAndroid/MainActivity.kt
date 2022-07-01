@@ -1,4 +1,4 @@
-package com.example.jc1
+package com.example.velocityXAndroid
 
 import android.os.Bundle
 import androidx.activity.ComponentActivity
@@ -6,22 +6,17 @@ import androidx.activity.compose.setContent
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
-import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
-import com.example.jc1.ui.theme.JC1Theme
-import com.example.jc1.ui.theme.rose100
-import dev.codepur.velocityx.Vx
-import dev.codepur.velocityx.compose.VxText
+import com.example.velocityXAndroid.ui.theme.VxTheme
 import dev.codepur.velocityx.compose.text
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
-            JC1Theme {
+            VxTheme {
                 // A surface container using the 'background' color from the theme
                 Surface(
                     modifier = Modifier.fillMaxSize(),
@@ -36,14 +31,14 @@ class MainActivity : ComponentActivity() {
 
 @Composable
 fun Greeting(name: String) {
-
-    "Hello Android".text.red500.center.bold.xl5.make()
+    "Hello $name".text.center.bold.xl5.amber800
+        .make()
 }
 
 @Preview(showBackground = true)
 @Composable
 fun DefaultPreview() {
-    JC1Theme {
+    VxTheme {
         Greeting("Android")
     }
 }

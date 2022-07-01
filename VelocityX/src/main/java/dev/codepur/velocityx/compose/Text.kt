@@ -2,8 +2,10 @@ package dev.codepur.velocityx.compose
 
 import android.annotation.SuppressLint
 import androidx.compose.material3.LocalTextStyle
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontFamily
@@ -17,13 +19,13 @@ import dev.codepur.velocityx.Vx
 import dev.codepur.velocityx.mixin.VxColorMixin
 
 
-class VxText(private val text: String): VxColorMixin<VxText>() {
+class VxText(private val text: String) : VxColorMixin<VxText>() {
 
     init {
         setChildToColor(this)
     }
 
-    private var  _text:String? = null
+    private var _text: String = text
     private var _fontFamily: FontFamily? = null
     private var _scaleFactor: Double = 1.0
     private var _fontSize: Double? = null
@@ -37,7 +39,9 @@ class VxText(private val text: String): VxColorMixin<VxText>() {
     private var _fontStyle: FontStyle? = null
     private var _softWrap: Boolean = true
     private var _textStyle: TextStyle? = null
+    private var _themedStyle: TextStyle? = null
     private var _textDecoration: TextDecoration? = null
+    private var _modifier: Modifier? = null
 
 
     /// The text to display.
@@ -55,8 +59,8 @@ class VxText(private val text: String): VxColorMixin<VxText>() {
     }
 
     /// Sets [color] of the text using Hex value
-    fun hexColor(colorHex:String): VxText {
-        velocityColor = Vx.hexToColor(colorHex);
+    fun hexColor(colorHex: String): VxText {
+        velocityColor = Vx.hexToColor(colorHex)
         return this
     }
 
@@ -83,7 +87,7 @@ class VxText(private val text: String): VxColorMixin<VxText>() {
 
     /// Sets [textScaleFactor] to extra large i.e. 1.25
     val xl: VxText
-    get() =  fontSizedText(child = this, scaleFactor = 1.25)
+        get() = fontSizedText(child = this, scaleFactor = 1.25)
 
     /// Sets [textScaleFactor] to twice extra large i.e. 1.5
     val xl2: VxText
@@ -91,38 +95,41 @@ class VxText(private val text: String): VxColorMixin<VxText>() {
 
     /// Sets [textScaleFactor] to thrice large i.e. 1.875
     val xl3: VxText
-        get() =  fontSizedText(child = this, scaleFactor = 1.875)
+        get() = fontSizedText(child = this, scaleFactor = 1.875)
 
     /// Sets [textScaleFactor] to four times extra large i.e. 2.25
     val xl4: VxText
-        get() =  fontSizedText(child = this, scaleFactor = 2.25)
+        get() = fontSizedText(child = this, scaleFactor = 2.25)
 
     /// Sets [textScaleFactor] to five times extra large i.e. 3
     val xl5: VxText
-        get() =  fontSizedText(child = this, scaleFactor = 3.0)
+        get() = fontSizedText(child = this, scaleFactor = 3.0)
 
     /// Sets [textScaleFactor] to six times extra large i.e. 4
     val xl6: VxText
-        get() =  fontSizedText(child = this, scaleFactor = 4.0)
+        get() = fontSizedText(child = this, scaleFactor = 4.0)
 
 
     /// Sets [textScaleFactor] to custom value
-    fun scale(value:Double):VxText =
-    fontSizedText(child = this, scaleFactor=  value)
+    fun scale(value: Double): VxText =
+        fontSizedText(child = this, scaleFactor = value)
+
     /// To set fontSize of the text using [size]
-    fun size(size:Double?):VxText {
+    fun size(size: Double?): VxText {
         _fontSize = size
         return this
     }
+
     private fun fontSizedText(
-        scaleFactor:Double, child: VxText) : VxText{
-        _fontSize = (_fontSize?:14.0)*scaleFactor
-        _scaleFactor = scaleFactor;
-        return child;
+        scaleFactor: Double, child: VxText
+    ): VxText {
+        _fontSize = (_fontSize ?: 14.0) * scaleFactor
+        _scaleFactor = scaleFactor
+        return child
     }
 
     // Give custom text alignment
-    fun align(align:TextAlign):VxText {
+    fun align(align: TextAlign): VxText {
         _textAlign = align
         return this
     }
@@ -177,6 +184,7 @@ class VxText(private val text: String): VxColorMixin<VxText>() {
             _overflow = TextOverflow.Ellipsis
             return this
         }
+
     /// To overflow text as [visible]
     val visible: VxText
         get() {
@@ -192,65 +200,70 @@ class VxText(private val text: String): VxColorMixin<VxText>() {
 
     /// Sets [FontWeight] to [FontWeight.w100]
     val hairLine: VxText
-        get() =  fontWeightedText(weight = FontWeight.W100)
+        get() = fontWeightedText(weight = FontWeight.W100)
 
     /// Sets [FontWeight] to [FontWeight.w200]
     val thin: VxText
-        get() =  fontWeightedText(weight = FontWeight.W200)
+        get() = fontWeightedText(weight = FontWeight.W200)
 
     /// Sets [FontWeight] to [FontWeight.w300]
     val light: VxText
-        get() =  fontWeightedText(weight = FontWeight.W300)
+        get() = fontWeightedText(weight = FontWeight.W300)
 
     /// Sets [FontWeight] to [FontWeight.w400]
     val normal: VxText
-        get() =  fontWeightedText(weight = FontWeight.W400)
+        get() = fontWeightedText(weight = FontWeight.W400)
 
     /// Sets [FontWeight] to [FontWeight.w500]
     val medium: VxText
-        get() =  fontWeightedText(weight = FontWeight.W500)
+        get() = fontWeightedText(weight = FontWeight.W500)
 
     /// Sets [FontWeight] to [FontWeight.w600]
     val semiBold: VxText
-        get() =  fontWeightedText(weight = FontWeight.W600)
+        get() = fontWeightedText(weight = FontWeight.W600)
 
     /// Sets [FontWeight] to [FontWeight.w700]
     val bold: VxText
-        get() =  fontWeightedText(weight = FontWeight.W700)
+        get() = fontWeightedText(weight = FontWeight.W700)
 
     /// Sets [FontWeight] to [FontWeight.w800]
     val extraBold: VxText
-        get() =  fontWeightedText(weight = FontWeight.W800)
+        get() = fontWeightedText(weight = FontWeight.W800)
 
     /// Sets [FontWeight] to [FontWeight.w900]
     val extraBlack: VxText
-        get() =  fontWeightedText(weight = FontWeight.W900)
+        get() = fontWeightedText(weight = FontWeight.W900)
 
-   private fun fontWeightedText(weight:FontWeight):VxText {
+    private fun fontWeightedText(weight: FontWeight): VxText {
         _fontWeight = weight
         return this
     }
 
     /// Sets [letterSpacing] to -3.0
-    val tightest : VxText
+    val tightest: VxText
         get() = letterSpacing(-3.0)
+
     /// Sets [letterSpacing] to -2.0
-    val tighter : VxText
+    val tighter: VxText
         get() = letterSpacing(-2.0)
+
     /// Sets [letterSpacing] to -1.0
-    val tight : VxText
+    val tight: VxText
         get() = letterSpacing(-1.0)
+
     /// Sets [letterSpacing] to 1.0
-    val wide : VxText
+    val wide: VxText
         get() = letterSpacing(1.0)
+
     /// Sets [letterSpacing] to 2.0
-    val wider : VxText
+    val wider: VxText
         get() = letterSpacing(2.0)
+
     /// Sets [letterSpacing] to 3.0
-    val widest : VxText
+    val widest: VxText
         get() = letterSpacing(3.0)
 
-    fun letterSpacing(spacing:Double):VxText {
+    fun letterSpacing(spacing: Double): VxText {
         _letterSpacing = spacing
         return this
     }
@@ -263,23 +276,23 @@ class VxText(private val text: String): VxColorMixin<VxText>() {
         }
 
     /// Sets [lineHeight] to 0.75
-    val heightTight : VxText
-    get() = lineHeight(0.75)
+    val heightTight: VxText
+        get() = lineHeight(0.75)
 
     /// Sets [lineHeight] to 0.875
-    val heightSnug : VxText
+    val heightSnug: VxText
         get() = lineHeight(0.875)
 
     /// Sets [lineHeight] to 1.25
-    val heightRelaxed : VxText
+    val heightRelaxed: VxText
         get() = lineHeight(1.25)
 
     /// Sets [lineHeight] to 1.5
-    val heightLoose : VxText
+    val heightLoose: VxText
         get() = lineHeight(1.5)
 
     /// Sets custom [lineHeight] with [val]
-    fun lineHeight(height:Double):VxText {
+    fun lineHeight(height: Double): VxText {
         _lineHeight = height
         return this
     }
@@ -304,9 +317,114 @@ class VxText(private val text: String): VxColorMixin<VxText>() {
     /// If the style's 'inherit' property is true, the style will be merged with
     /// the closest enclosing [DefaultTextStyle]. Otherwise, the style will
     /// replace the closest enclosing [DefaultTextStyle].
-    fun textStyle(style: TextStyle):VxText {
-        _textStyle = style;
-        return this;
+    fun textStyle(style: TextStyle): VxText {
+        _textStyle = style
+        return this
+    }
+
+    /// Sets [TextTheme] headline small
+    @Composable
+    fun headlineSmall(): VxText {
+        _themedStyle = MaterialTheme.typography.headlineSmall
+        return this
+    }
+
+    /// Sets [TextTheme] headline medium
+    @Composable
+    fun headlineMedium(): VxText {
+        _themedStyle = MaterialTheme.typography.headlineMedium
+        return this
+    }
+
+    /// Sets [TextTheme] headline large
+    @Composable
+    fun headlineLarge(): VxText {
+        _themedStyle = MaterialTheme.typography.headlineLarge
+        return this
+    }
+
+    /// Sets [TextTheme] title small
+    @Composable
+    fun titleSmall(): VxText {
+        _themedStyle = MaterialTheme.typography.titleSmall
+        return this
+    }
+
+    /// Sets [TextTheme] title medium
+    @Composable
+    fun titleMedium(): VxText {
+        _themedStyle = MaterialTheme.typography.titleMedium
+        return this
+    }
+
+    /// Sets [TextTheme] title large
+    @Composable
+    fun titleLarge(): VxText {
+        _themedStyle = MaterialTheme.typography.titleLarge
+        return this
+    }
+
+    /// Sets [TextTheme] body small
+    @Composable
+    fun bodySmall(): VxText {
+        _themedStyle = MaterialTheme.typography.bodySmall
+        return this
+    }
+
+    /// Sets [TextTheme] body medium
+    @Composable
+    fun bodyMedium(): VxText {
+        _themedStyle = MaterialTheme.typography.bodyMedium
+        return this
+    }
+
+    /// Sets [TextTheme] body large
+    @Composable
+    fun bodyLarge(): VxText {
+        _themedStyle = MaterialTheme.typography.bodyLarge
+        return this
+    }
+
+    /// Sets [TextTheme] display small
+    @Composable
+    fun displaySmall(): VxText {
+        _themedStyle = MaterialTheme.typography.displaySmall
+        return this
+    }
+
+    /// Sets [TextTheme] display medium
+    @Composable
+    fun displayMedium(): VxText {
+        _themedStyle = MaterialTheme.typography.displayMedium
+        return this
+    }
+
+    /// Sets [TextTheme] display large
+    @Composable
+    fun displayLarge(): VxText {
+        _themedStyle = MaterialTheme.typography.displayLarge
+        return this
+    }
+
+    /// Sets [TextTheme] label small
+    @Composable
+    fun labelSmall(): VxText {
+        _themedStyle = MaterialTheme.typography.labelSmall
+        return this
+    }
+
+    /// Sets [TextTheme] label medium
+    @Composable
+    fun labelMedium(): VxText {
+        _themedStyle = MaterialTheme.typography.labelMedium
+        return this
+    }
+
+    /// Sets [TextTheme] label large
+    @Composable
+    fun labelLarge(): VxText {
+        _themedStyle = MaterialTheme.typography.labelLarge
+        return this
     }
 
     /// Sets [TextDecoration] as [TextDecoration.underline]
@@ -322,24 +440,30 @@ class VxText(private val text: String): VxColorMixin<VxText>() {
         get() = decoration(TextDecoration.None)
 
     ///Sets TextDecoration
-    fun decoration(decorator: TextDecoration):VxText {
-        _textDecoration = decorator;
-        return this;
+    fun decoration(decorator: TextDecoration): VxText {
+        _textDecoration = decorator
+        return this
+    }
+
+    ///Sets Modifier
+    fun modifier(value: Modifier): VxText {
+        _modifier = value
+        return this
     }
 
     /// Converts the text to fully uppercase.
-    val uppercase:VxText
-    get() = setText(_text?.uppercase()!!)
+    val uppercase: VxText
+        get() = setText(_text.uppercase())
 
     /// Converts the text to fully lowercase.
-    val lowercase:VxText
-        get() = setText(_text?.lowercase()!!)
+    val lowercase: VxText
+        get() = setText(_text.lowercase())
 
 
     ///Modifies Text
-    private fun setText(newText: String):VxText {
-        _text = newText;
-        return this;
+    private fun setText(newText: String): VxText {
+        _text = newText
+        return this
     }
 
 
@@ -347,28 +471,29 @@ class VxText(private val text: String): VxColorMixin<VxText>() {
     @Composable
     fun make() {
         val currentContext = LocalTextStyle.current
+        val newStyle = _themedStyle?.merge(_textStyle) ?: _textStyle ?: currentContext
         Text(
-            text = text,
-            color = velocityColor ?: currentContext.color,
-            fontSize = _fontSize?.sp ?: currentContext.fontSize,
-            fontWeight = _fontWeight ?: currentContext.fontWeight,
-            textAlign = _textAlign ?: currentContext.textAlign,
+            text = _text,
+            color = velocityColor ?: newStyle.color,
+            fontSize = _fontSize?.sp ?: newStyle.fontSize,
+            fontWeight = _fontWeight ?: newStyle.fontWeight,
+            textAlign = _textAlign ?: newStyle.textAlign,
             maxLines = _maxLines ?: Int.MAX_VALUE,
-            letterSpacing = _letterSpacing?.sp ?: currentContext.letterSpacing,
-            fontStyle = _fontStyle ?: currentContext.fontStyle,
+            letterSpacing = _letterSpacing?.sp ?: newStyle.letterSpacing,
+            fontStyle = _fontStyle ?: newStyle.fontStyle,
             overflow = _overflow ?: TextOverflow.Clip,
-            lineHeight = _lineHeight?.sp ?: currentContext.lineHeight,
+            lineHeight = _lineHeight?.sp ?: newStyle.lineHeight,
             softWrap = _softWrap,
-            fontFamily = _fontFamily?:currentContext.fontFamily,
-            style = _textStyle?:TextStyle.Default,
-            textDecoration = _textDecoration?:currentContext.textDecoration,
+            fontFamily = _fontFamily ?: newStyle.fontFamily,
+            style = newStyle,
+            textDecoration = _textDecoration ?: newStyle.textDecoration,
+            modifier = _modifier ?: Modifier,
 
             )
     }
 
 
-
 }
 
-val String.text get() =  VxText(text = this)
+val String.text get() = VxText(text = this)
 
