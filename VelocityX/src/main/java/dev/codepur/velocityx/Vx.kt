@@ -1,6 +1,7 @@
 package dev.codepur.velocityx
 
 import androidx.compose.ui.graphics.Color
+import java.util.*
 
 class Vx {
 
@@ -538,5 +539,15 @@ class Vx {
         val rose700: Color = Color(0xFFBE123C)
         val rose800: Color = Color(0xFF9F1239)
         val rose900: Color = Color(0xFF881337)
+
+
+        /// Get color from the hex value
+        fun hexToColor(code: String): Color =
+             Color(android.graphics.Color.parseColor(code))
+
+        /// Get Random Non-Primary Color
+         val randomOpaqueColor:Color
+         get() = Color(Random().nextInt(0xffffff)).copy(alpha = 1.0f);
+
     }
 }

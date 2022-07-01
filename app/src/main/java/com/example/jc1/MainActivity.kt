@@ -9,9 +9,13 @@ import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import com.example.jc1.ui.theme.JC1Theme
+import com.example.jc1.ui.theme.rose100
 import dev.codepur.velocityx.Vx
+import dev.codepur.velocityx.compose.VxText
+import dev.codepur.velocityx.compose.text
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -21,7 +25,7 @@ class MainActivity : ComponentActivity() {
                 // A surface container using the 'background' color from the theme
                 Surface(
                     modifier = Modifier.fillMaxSize(),
-                    color = MaterialTheme.colorScheme.background
+                    color = MaterialTheme.colorScheme.surface
                 ) {
                     Greeting("Android")
                 }
@@ -32,8 +36,8 @@ class MainActivity : ComponentActivity() {
 
 @Composable
 fun Greeting(name: String) {
-    println(Vx.dp0);
-    Text(text = "Hello $name!")
+
+    "Hello Android".text.red500.center.bold.xl5.make()
 }
 
 @Preview(showBackground = true)
