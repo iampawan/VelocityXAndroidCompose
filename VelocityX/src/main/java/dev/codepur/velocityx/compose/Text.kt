@@ -471,22 +471,35 @@ class VxText(private val text: String) : VxColorMixin<VxText>() {
     @Composable
     fun make() {
         val currentContext = LocalTextStyle.current
-        val newStyle = _themedStyle?.merge(_textStyle) ?: _textStyle ?: currentContext
-        Text(
-            text = _text,
+        var newStyle = _themedStyle ?: _textStyle ?: currentContext
+        val ts = TextStyle(
             color = velocityColor ?: newStyle.color,
             fontSize = _fontSize?.sp ?: newStyle.fontSize,
             fontWeight = _fontWeight ?: newStyle.fontWeight,
             textAlign = _textAlign ?: newStyle.textAlign,
-            maxLines = _maxLines ?: Int.MAX_VALUE,
             letterSpacing = _letterSpacing?.sp ?: newStyle.letterSpacing,
             fontStyle = _fontStyle ?: newStyle.fontStyle,
-            overflow = _overflow ?: TextOverflow.Clip,
             lineHeight = _lineHeight?.sp ?: newStyle.lineHeight,
-            softWrap = _softWrap,
             fontFamily = _fontFamily ?: newStyle.fontFamily,
-            style = newStyle,
             textDecoration = _textDecoration ?: newStyle.textDecoration,
+        )
+        newStyle = _themedStyle?.merge(ts) ?: _textStyle?.merge(ts) ?: ts
+
+        Text(
+            text = _text,
+            color = newStyle.color,
+            fontSize = newStyle.fontSize,
+            fontWeight = newStyle.fontWeight,
+            textAlign = newStyle.textAlign,
+            maxLines = _maxLines ?: Int.MAX_VALUE,
+            letterSpacing = newStyle.letterSpacing,
+            fontStyle = newStyle.fontStyle,
+            overflow = _overflow ?: TextOverflow.Clip,
+            lineHeight = newStyle.lineHeight,
+            softWrap = _softWrap,
+            fontFamily = newStyle.fontFamily,
+            style = newStyle,
+            textDecoration = newStyle.textDecoration,
             modifier = _modifier ?: Modifier,
 
             )
