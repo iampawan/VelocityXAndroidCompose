@@ -31,7 +31,7 @@ class MainActivity : ComponentActivity() {
 
 @Composable
 fun Greeting(name: String) {
-    "Hello $name".text.center.blue500.italic.make()
+    "Hello $name".text.center.make()
 }
 
 @Preview(showBackground = true)
