@@ -26,6 +26,8 @@ interface IVxModifierMixin<T> {
     fun px(value: Dp): T
     fun py(value: Dp): T
     fun pxy(value1: Dp, value2: Dp): T
+    fun pLTRB(left: Dp, top: Dp, right: Dp, bottom: Dp): T
+    fun pBaseline(top: Dp, bottom: Dp): T
     fun width(value: Dp): T
     fun size(value: Dp): T
     fun size(width: Dp, height: Dp): T
@@ -33,7 +35,6 @@ interface IVxModifierMixin<T> {
     fun offset(x: Dp, y: Dp): T
     fun clip(shape: Shape): T
     fun bg(color: Color, shape: Shape = RectangleShape): T
-
     fun clickable(onClick: () -> Unit, enabled: Boolean = true): T
 
 
@@ -721,6 +722,26 @@ class VxModifierMixin<T> : IVxModifierMixin<T> {
             velocityModifier!!.padding(value)
         } else {
             Modifier.padding(value)
+        }
+
+        return _child!!
+    }
+
+    override fun pLTRB(left: Dp, top: Dp, right: Dp, bottom: Dp): T {
+        velocityModifier = if (velocityModifier != null) {
+            velocityModifier!!.padding(start = left, top = top, end = right, bottom = bottom)
+        } else {
+            Modifier.padding(start = left, top = top, end = right, bottom = bottom)
+        }
+
+        return _child!!
+    }
+
+    override fun pBaseline(top: Dp, bottom: Dp): T {
+        velocityModifier = if (velocityModifier != null) {
+            velocityModifier!!.paddingFromBaseline(top = top, bottom = bottom)
+        } else {
+            Modifier.paddingFromBaseline(top = top, bottom = bottom)
         }
 
         return _child!!

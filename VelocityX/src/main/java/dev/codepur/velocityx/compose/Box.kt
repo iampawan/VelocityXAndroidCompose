@@ -36,7 +36,7 @@ class VxBox(
         if (velocityColor != null) {
             currentModifier = currentModifier
                 .background(color = velocityColor!!)
-            
+
         }
 
         return Box(
@@ -44,6 +44,7 @@ class VxBox(
             modifier = currentModifier
         ) {
             children.invoke(this)
+            
         }
     }
 
