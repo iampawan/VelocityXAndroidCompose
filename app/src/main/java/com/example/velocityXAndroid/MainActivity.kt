@@ -6,7 +6,7 @@ import androidx.activity.compose.setContent
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.shape.CutCornerShape
+import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
@@ -45,9 +45,9 @@ fun Greeting(name: String) {
 
     VxBox(
         children = {
-            "Hello $name".text.xl3.italic.make()
+            "Hello $name".text.white.center.xl3.italic.make()
         },
-    ).blue700.p12.clip(CutCornerShape(30.dp)).make()
+    ).blue700.alignCenter.p12.clip(CircleShape).square(size = 200.dp).make()
 
 }
 

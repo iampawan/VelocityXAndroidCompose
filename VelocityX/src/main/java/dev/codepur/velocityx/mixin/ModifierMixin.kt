@@ -1,11 +1,14 @@
 package dev.codepur.velocityx.mixin
 
-import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.layout.sizeIn
+import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.*
+import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.RectangleShape
 import androidx.compose.ui.graphics.Shape
+import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 
@@ -17,10 +20,12 @@ interface IVxModifierMixin<T> {
     fun px(value: Dp): T
     fun py(value: Dp): T
     fun pxy(value1: Dp, value2: Dp): T
+    fun width(value: Dp): T
     fun size(value: Dp): T
     fun size(width: Dp, height: Dp): T
-    fun clip(shape: Shape): T
     fun sizeIn(minWidth: Dp, maxWidth: Dp, minHeight: Dp, maxHeight: Dp): T
+    fun clip(shape: Shape): T
+    fun bg(color: Color, shape: Shape = RectangleShape): T
 
 
     /// Padding for all
@@ -121,19 +126,497 @@ interface IVxModifierMixin<T> {
         get() = pxy(64.dp, 64.dp)
 
 
+    @Composable
+    fun w(width: Dp): T
+
+    @Composable
+    fun h(height: Dp): T
+
+    @Composable
+    fun w0(): T
+
+    @Composable
+    fun w1(): T
+
+    @Composable
+    fun w2(): T
+
+    @Composable
+    fun w4(): T
+
+    @Composable
+    fun w8(): T
+
+    @Composable
+    fun w10(): T
+
+    @Composable
+    fun w12(): T
+
+    @Composable
+    fun w16(): T
+
+    @Composable
+    fun w20(): T
+
+    @Composable
+    fun w24(): T
+
+    @Composable
+    fun w32(): T
+
+    @Composable
+    fun w40(): T
+
+    @Composable
+    fun w48(): T
+
+    @Composable
+    fun w60(): T
+
+    @Composable
+    fun w75(): T
+
+    @Composable
+    fun wHalf(): T
+
+    @Composable
+    fun wOneThird(): T
+
+    @Composable
+    fun wTwoThird(): T
+
+    @Composable
+    fun wOneForth(): T
+
+    @Composable
+    fun wThreeForth(): T
+
+    @Composable
+    fun wFull(): T
+
+    @Composable
+    fun h0(): T
+
+    @Composable
+    fun h1(): T
+
+    @Composable
+    fun h2(): T
+
+    @Composable
+    fun h4(): T
+
+    @Composable
+    fun h8(): T
+
+    @Composable
+    fun h10(): T
+
+    @Composable
+    fun h12(): T
+
+    @Composable
+    fun h16(): T
+
+    @Composable
+    fun h20(): T
+
+    @Composable
+    fun h24(): T
+
+    @Composable
+    fun h32(): T
+
+    @Composable
+    fun h40(): T
+
+    @Composable
+    fun h48(): T
+
+    @Composable
+    fun h60(): T
+
+    @Composable
+    fun h75(): T
+
+    @Composable
+    fun hHalf(): T
+
+    @Composable
+    fun hOneThird(): T
+
+    @Composable
+    fun hThoThird(): T
+
+    @Composable
+    fun hOneForth(): T
+
+    @Composable
+    fun hThreeForth(): T
+
+    @Composable
+    fun hFull(): T
+
+    @Composable
+    fun wh0(): T
+
+    @Composable
+    fun wh1(): T
+
+    @Composable
+    fun wh2(): T
+
+    @Composable
+    fun wh4(): T
+
+    @Composable
+    fun wh8(): T
+
+    @Composable
+    fun wh10(): T
+
+    @Composable
+    fun wh12(): T
+
+    @Composable
+    fun wh16(): T
+
+    @Composable
+    fun wh20(): T
+
+    @Composable
+    fun wh24(): T
+
+    @Composable
+    fun wh32(): T
+
+    @Composable
+    fun wh40(): T
+
+    @Composable
+    fun wh48(): T
+
+    @Composable
+    fun wh60(): T
+
+    @Composable
+    fun wh75(): T
+
+    @Composable
+    fun whHalf(): T
+
+    @Composable
+    fun whOneThird(): T
+
+    @Composable
+    fun whTwoThird(): T
+
+    @Composable
+    fun whOneForth(): T
+
+    @Composable
+    fun whThreeForth(): T
+
+    @Composable
+    fun whFull(): T
+
+    @Composable
+    fun square(size: Dp): T
 }
 
 class VxModifierMixin<T> : IVxModifierMixin<T> {
     private var _child: T? = null
-
     override var velocityModifier: Modifier? = null
 
     override fun setChildForModifier(child: T) {
         _child = child
     }
 
+
+    @Composable
+    override fun w0(): T = setCustomWidth(w = 0.0)
+
+    @Composable
+    override fun w1(): T = setCustomWidth(w = 1.0)
+
+    @Composable
+    override fun w2(): T = setCustomWidth(w = 2.0)
+
+    @Composable
+    override fun w4(): T = setCustomWidth(w = 4.0)
+
+    @Composable
+    override fun w8(): T = setCustomWidth(w = 8.0)
+
+    @Composable
+    override fun w10(): T = setCustomWidth(w = 10.0)
+
+    @Composable
+    override fun w12(): T = setCustomWidth(w = 12.0)
+
+    @Composable
+    override fun w16(): T = setCustomWidth(w = 16.0)
+
+    @Composable
+    override fun w20(): T = setCustomWidth(w = 20.0)
+
+    @Composable
+    override fun w24(): T = setCustomWidth(w = 24.0)
+
+    @Composable
+    override fun w32(): T = setCustomWidth(w = 32.0)
+
+    @Composable
+    override fun w40(): T = setCustomWidth(w = 40.0)
+
+    @Composable
+    override fun w48(): T = setCustomWidth(w = 48.0)
+
+    @Composable
+    override fun w60(): T = setCustomWidth(w = 60.0)
+
+    @Composable
+    override fun w75(): T = setCustomWidth(w = 75.0)
+
+    @Composable
+    override fun wHalf(): T = setCustomWidth(w = 50.0)
+
+    @Composable
+    override fun wOneThird(): T = setCustomWidth(w = 33.33)
+
+    @Composable
+    override fun wTwoThird(): T = setCustomWidth(w = 66.66)
+
+    @Composable
+    override fun wOneForth(): T = setCustomWidth(w = 23.0)
+
+    @Composable
+    override fun wThreeForth(): T = setCustomWidth(w = 75.0)
+
+    @Composable
+    override fun wFull(): T = setCustomWidth(w = 100.0)
+
+
+    @Composable
+    override fun h0(): T = setCustomHeight(h = 0.0)
+
+    @Composable
+    override fun h1(): T = setCustomHeight(h = 1.0)
+
+    @Composable
+    override fun h2(): T = setCustomHeight(h = 2.0)
+
+    @Composable
+    override fun h4(): T = setCustomHeight(h = 4.0)
+
+    @Composable
+    override fun h8(): T = setCustomHeight(h = 8.0)
+
+    @Composable
+    override fun h10(): T = setCustomHeight(h = 10.0)
+
+    @Composable
+    override fun h12(): T = setCustomHeight(h = 12.0)
+
+    @Composable
+    override fun h16(): T = setCustomHeight(h = 16.0)
+
+    @Composable
+    override fun h20(): T = setCustomHeight(h = 20.0)
+
+    @Composable
+    override fun h24(): T = setCustomHeight(h = 24.0)
+
+    @Composable
+    override fun h32(): T = setCustomHeight(h = 32.0)
+
+    @Composable
+    override fun h40(): T = setCustomHeight(h = 40.0)
+
+    @Composable
+    override fun h48(): T = setCustomHeight(h = 48.0)
+
+    @Composable
+    override fun h60(): T = setCustomHeight(h = 60.0)
+
+    @Composable
+    override fun h75(): T = setCustomHeight(h = 75.0)
+
+    @Composable
+    override fun hHalf(): T = setCustomHeight(h = 50.0)
+
+    @Composable
+    override fun hOneThird(): T = setCustomHeight(h = 33.33)
+
+    @Composable
+    override fun hThoThird(): T = setCustomHeight(h = 66.66)
+
+    @Composable
+    override fun hOneForth(): T = setCustomHeight(h = 23.0)
+
+    @Composable
+    override fun hThreeForth(): T = setCustomHeight(h = 75.0)
+
+    @Composable
+    override fun hFull(): T = setCustomHeight(h = 100.0)
+
+    @Composable
+    override fun wh0(): T = setCustomWidthHeight(v = 0.0)
+
+    @Composable
+    override fun wh1(): T = setCustomWidthHeight(v = 1.0)
+
+    @Composable
+    override fun wh2(): T = setCustomWidthHeight(v = 2.0)
+
+    @Composable
+    override fun wh4(): T = setCustomWidthHeight(v = 4.0)
+
+    @Composable
+    override fun wh8(): T = setCustomWidthHeight(v = 8.0)
+
+    @Composable
+    override fun wh10(): T = setCustomWidthHeight(v = 10.0)
+
+    @Composable
+    override fun wh12(): T = setCustomWidthHeight(v = 12.0)
+
+    @Composable
+    override fun wh16(): T = setCustomWidthHeight(v = 16.0)
+
+    @Composable
+    override fun wh20(): T = setCustomWidthHeight(v = 20.0)
+
+    @Composable
+    override fun wh24(): T = setCustomWidthHeight(v = 24.0)
+
+    @Composable
+    override fun wh32(): T = setCustomWidthHeight(v = 32.0)
+
+    @Composable
+    override fun wh40(): T = setCustomWidthHeight(v = 40.0)
+
+    @Composable
+    override fun wh48(): T = setCustomWidthHeight(v = 48.0)
+
+    @Composable
+    override fun wh60(): T = setCustomWidthHeight(v = 60.0)
+
+    @Composable
+    override fun wh75(): T = setCustomWidthHeight(v = 75.0)
+
+    @Composable
+    override fun whHalf(): T = setCustomWidthHeight(v = 50.0)
+
+    @Composable
+    override fun whOneThird(): T = setCustomWidthHeight(v = 33.33)
+
+    @Composable
+    override fun whTwoThird(): T = setCustomWidthHeight(v = 66.66)
+
+    @Composable
+    override fun whOneForth(): T = setCustomWidthHeight(v = 23.0)
+
+    @Composable
+    override fun whThreeForth(): T = setCustomWidthHeight(v = 75.0)
+
+    @Composable
+    override fun whFull(): T = setCustomWidthHeight(v = 100.0)
+
+    @Composable
+    override fun square(size: Dp): T {
+        velocityModifier = if (velocityModifier != null) {
+            velocityModifier!!
+                .requiredSize(size)
+        } else {
+            Modifier.requiredSize(size)
+        }
+
+        return _child!!
+    }
+
+    @Composable
+    override fun w(width: Dp): T {
+        velocityModifier = if (velocityModifier != null) {
+            velocityModifier!!
+                .requiredWidth(width)
+        } else {
+            Modifier.requiredWidth(width)
+        }
+
+        return _child!!
+    }
+
+    @Composable
+    override fun h(width: Dp): T {
+        velocityModifier = if (velocityModifier != null) {
+            velocityModifier!!
+                .requiredHeight(width)
+        } else {
+            Modifier.requiredHeight(width)
+        }
+
+        return _child!!
+    }
+
+    @Composable
+    private fun setCustomWidth(w: Double): T {
+        val screenWidth = LocalConfiguration.current.screenWidthDp
+        val width = (screenWidth / 100.0) * w
+        velocityModifier = if (velocityModifier != null) {
+            velocityModifier!!
+                .requiredWidth(width.dp)
+        } else {
+            Modifier.requiredWidth(width.dp)
+        }
+        return _child!!
+    }
+
+    @Composable
+    private fun setCustomHeight(h: Double): T {
+        val screenHeight = LocalConfiguration.current.screenHeightDp
+        val width = (screenHeight / 100.0) * h
+        velocityModifier = if (velocityModifier != null) {
+            velocityModifier!!
+                .requiredHeight(width.dp)
+        } else {
+            Modifier.requiredHeight(width.dp)
+        }
+        return _child!!
+    }
+
+    @Composable
+    private fun setCustomWidthHeight(v: Double): T {
+        val screenWidth = LocalConfiguration.current.screenWidthDp
+        val screenHeight = LocalConfiguration.current.screenHeightDp
+        val width = (screenWidth / 100.0) * v
+        val height = (screenHeight / 100.0) * v
+        velocityModifier = if (velocityModifier != null) {
+            velocityModifier!!
+                .requiredWidth(width.dp)
+                .requiredHeight(height.dp)
+        } else {
+            Modifier
+                .requiredWidth(width.dp)
+                .requiredHeight(height.dp)
+        }
+        return _child!!
+    }
+
+
     override fun modifier(value: Modifier): T {
         velocityModifier = value
+        return _child!!
+    }
+
+    override fun width(value: Dp): T {
+        velocityModifier = if (velocityModifier != null) {
+            velocityModifier!!.width(value)
+        } else {
+            Modifier.width(value)
+        }
+
         return _child!!
     }
 
@@ -222,6 +705,16 @@ class VxModifierMixin<T> : IVxModifierMixin<T> {
             velocityModifier!!.clip(shape)
         } else {
             Modifier.clip(shape)
+        }
+
+        return _child!!
+    }
+
+    override fun bg(color: Color, shape: Shape): T {
+        velocityModifier = if (velocityModifier != null) {
+            velocityModifier!!.background(color = color, shape = shape)
+        } else {
+            Modifier.background(color = color, shape = shape)
         }
 
         return _child!!

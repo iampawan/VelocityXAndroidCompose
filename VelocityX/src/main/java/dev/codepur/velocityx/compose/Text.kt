@@ -15,19 +15,22 @@ import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.sp
 import dev.codepur.velocityx.mixin.IVxColorMixin
+import dev.codepur.velocityx.mixin.IVxModifierMixin
 import dev.codepur.velocityx.mixin.VxColorMixin
+import dev.codepur.velocityx.mixin.VxModifierMixin
 
 
 open class VxTextAddOn<T>(
     colorMixin: IVxColorMixin<T> = VxColorMixin<T>(),
+    modifierMixin: IVxModifierMixin<T> = VxModifierMixin()
 ) :
-    IVxColorMixin<T> by colorMixin
+    IVxColorMixin<T> by colorMixin, IVxModifierMixin<T> by modifierMixin
 
 class VxText(val text: String) : VxTextAddOn<VxText>() {
 
     init {
         setChildToColor(this)
-
+        setChildForModifier(this)
     }
 
     private var _text: String = text
@@ -46,7 +49,6 @@ class VxText(val text: String) : VxTextAddOn<VxText>() {
     private var _textStyle: TextStyle? = null
     private var _themedStyle: TextStyle? = null
     private var _textDecoration: TextDecoration? = null
-    private var _modifier: Modifier? = null
 
 
     /// The text to display.
@@ -439,12 +441,6 @@ class VxText(val text: String) : VxTextAddOn<VxText>() {
         return this
     }
 
-    ///Sets Modifier
-    fun modifier(value: Modifier): VxText {
-        _modifier = value
-        return this
-    }
-
     /// Converts the text to fully uppercase.
     val uppercase: VxText
         get() = setText(_text.uppercase())
@@ -463,7 +459,7 @@ class VxText(val text: String) : VxTextAddOn<VxText>() {
     @SuppressLint("ComposableNaming")
     @Composable
     fun make() {
-
+        var currentModifier = velocityModifier ?: Modifier
         val currentContext = LocalTextStyle.current
         var newStyle = _themedStyle ?: _textStyle ?: currentContext
         val ts = TextStyle(
@@ -494,7 +490,7 @@ class VxText(val text: String) : VxTextAddOn<VxText>() {
             fontFamily = newStyle.fontFamily,
             style = newStyle,
             textDecoration = newStyle.textDecoration,
-            modifier = _modifier ?: Modifier,
+            modifier = currentModifier,
 
             )
     }
