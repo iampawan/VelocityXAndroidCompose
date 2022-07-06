@@ -1,12 +1,14 @@
 package dev.codepur.velocityx.mixin
 
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.RectangleShape
 import androidx.compose.ui.graphics.Shape
@@ -19,6 +21,7 @@ interface IVxModifierMixin<T> {
     fun setChildForModifier(child: T)
     fun modifier(value: Modifier): T
     fun withRounded(value: Dp): T
+    fun withShadow(value: Dp): T
     fun p(value: Dp): T
     fun px(value: Dp): T
     fun py(value: Dp): T
@@ -27,12 +30,15 @@ interface IVxModifierMixin<T> {
     fun size(value: Dp): T
     fun size(width: Dp, height: Dp): T
     fun sizeIn(minWidth: Dp, maxWidth: Dp, minHeight: Dp, maxHeight: Dp): T
+    fun offset(x: Dp, y: Dp): T
     fun clip(shape: Shape): T
     fun bg(color: Color, shape: Shape = RectangleShape): T
 
+    fun clickable(onClick: () -> Unit, enabled: Boolean = true): T
+
 
     /// Rounding
-    val roundedSM: T
+    val roundedSm: T
         get() = withRounded(7.5.dp)
 
     val rounded: T
@@ -43,6 +49,34 @@ interface IVxModifierMixin<T> {
 
     val circle: T
         get() = clip(shape = CircleShape)
+
+
+    /// Shadow
+    val shadowXs: T
+        get() = withShadow(1.dp)
+
+    val shadowSm: T
+        get() = withShadow(2.dp)
+
+    val shadowMd: T
+        get() = withShadow(3.dp)
+
+    val shadowLg: T
+        get() = withShadow(4.dp)
+
+    val shadowXl: T
+        get() = withShadow(6.dp)
+
+    val shadow2Xl: T
+        get() = withShadow(8.dp)
+    val shadow3Xl: T
+        get() = withShadow(9.dp)
+    val shadow4Xl: T
+        get() = withShadow(12.dp)
+    val shadow5Xl: T
+        get() = withShadow(16.dp)
+    val shadowMax: T
+        get() = withShadow(24.dp)
 
     /// Padding for all
     val p0: T
@@ -141,12 +175,15 @@ interface IVxModifierMixin<T> {
     val pxy64: T
         get() = pxy(64.dp, 64.dp)
 
+    fun fillMaxWidth(fraction: Float): T
+    fun fillMaxHeight(fraction: Float): T
+    fun fillMaxSize(fraction: Float): T
 
     @Composable
-    fun w(width: Dp): T
+    fun forcedWidth(width: Dp): T
 
     @Composable
-    fun h(height: Dp): T
+    fun forcedHeight(height: Dp): T
 
     @Composable
     fun w0(): T
@@ -349,6 +386,38 @@ class VxModifierMixin<T> : IVxModifierMixin<T> {
         _child = child
     }
 
+    override fun fillMaxWidth(fraction: Float): T {
+        velocityModifier = if (velocityModifier != null) {
+            velocityModifier!!
+                .fillMaxWidth(fraction = fraction)
+        } else {
+            Modifier.fillMaxWidth(fraction = fraction)
+        }
+
+        return _child!!
+    }
+
+    override fun fillMaxHeight(fraction: Float): T {
+        velocityModifier = if (velocityModifier != null) {
+            velocityModifier!!
+                .fillMaxHeight(fraction = fraction)
+        } else {
+            Modifier.fillMaxHeight(fraction = fraction)
+        }
+
+        return _child!!
+    }
+
+    override fun fillMaxSize(fraction: Float): T {
+        velocityModifier = if (velocityModifier != null) {
+            velocityModifier!!
+                .fillMaxSize(fraction = fraction)
+        } else {
+            Modifier.fillMaxSize(fraction = fraction)
+        }
+
+        return _child!!
+    }
 
     @Composable
     override fun w0(): T = setCustomWidth(w = 0.0)
@@ -540,6 +609,17 @@ class VxModifierMixin<T> : IVxModifierMixin<T> {
     @Composable
     override fun whFull(): T = setCustomWidthHeight(v = 100.0)
 
+    override fun offset(x: Dp, y: Dp): T {
+        velocityModifier = if (velocityModifier != null) {
+            velocityModifier!!
+                .offset(x = x, y = y)
+        } else {
+            Modifier.offset(x = x, y = y)
+        }
+
+        return _child!!
+    }
+
     @Composable
     override fun square(size: Dp): T {
         velocityModifier = if (velocityModifier != null) {
@@ -553,7 +633,7 @@ class VxModifierMixin<T> : IVxModifierMixin<T> {
     }
 
     @Composable
-    override fun w(width: Dp): T {
+    override fun forcedWidth(width: Dp): T {
         velocityModifier = if (velocityModifier != null) {
             velocityModifier!!
                 .requiredWidth(width)
@@ -565,12 +645,12 @@ class VxModifierMixin<T> : IVxModifierMixin<T> {
     }
 
     @Composable
-    override fun h(width: Dp): T {
+    override fun forcedHeight(height: Dp): T {
         velocityModifier = if (velocityModifier != null) {
             velocityModifier!!
-                .requiredHeight(width)
+                .requiredHeight(height)
         } else {
-            Modifier.requiredHeight(width)
+            Modifier.requiredHeight(height)
         }
 
         return _child!!
@@ -651,6 +731,17 @@ class VxModifierMixin<T> : IVxModifierMixin<T> {
             velocityModifier!!.clip(RoundedCornerShape(value))
         } else {
             Modifier.clip(RoundedCornerShape(value))
+        }
+
+        return _child!!
+    }
+
+    override fun withShadow(value: Dp): T {
+        velocityModifier = if (velocityModifier != null) {
+            velocityModifier!!.shadow(value)
+        } else {
+            Modifier.shadow(value)
+
         }
 
         return _child!!
@@ -741,6 +832,16 @@ class VxModifierMixin<T> : IVxModifierMixin<T> {
             velocityModifier!!.background(color = color, shape = shape)
         } else {
             Modifier.background(color = color, shape = shape)
+        }
+
+        return _child!!
+    }
+
+    override fun clickable(onClick: () -> Unit, enabled: Boolean): T {
+        velocityModifier = if (velocityModifier != null) {
+            velocityModifier!!.clickable(enabled = enabled, onClick = onClick)
+        } else {
+            Modifier.clickable(enabled = enabled, onClick = onClick)
         }
 
         return _child!!

@@ -29,7 +29,7 @@ class MainActivity : ComponentActivity() {
                 // A surface container using the 'background' color from the theme
                 Surface(
                     modifier = Modifier.fillMaxSize(),
-                    color = MaterialTheme.colorScheme.surface
+                    color = MaterialTheme.colorScheme.inversePrimary
                 ) {
                     Greeting(name = "Pawan")
 //                    BoxExample()
@@ -46,7 +46,7 @@ fun Greeting(name: String) {
         children = {
             "Hello $name".text.white.center.xl3.italic.make()
         },
-    ).blue700.alignCenter.p12.roundedLg.square(size = 200.dp).make()
+    ).blue700.alignCenter.p12.roundedLg.square(size = 200.dp).shadowXl.make()
 
 }
 
