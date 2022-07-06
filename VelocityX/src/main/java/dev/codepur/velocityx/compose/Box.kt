@@ -7,7 +7,6 @@ import androidx.compose.foundation.layout.BoxScope
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import dev.codepur.velocityx.mixin.IVxAlignmentMixin
 import dev.codepur.velocityx.mixin.IVxColorMixin
 import dev.codepur.velocityx.mixin.VxAlignmentMixin
@@ -28,13 +27,7 @@ class VxBox(
         setChildForAlignment(this)
 
     }
-
-    /// Sets color of the text
-    fun color(color: Color): VxBox {
-        velocityColor = color
-        return this
-    }
-
+    
     @SuppressLint("ComposableNaming")
     @Composable
     fun make() {

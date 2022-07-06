@@ -37,7 +37,7 @@ interface IVxAlignmentMixin<T> {
 
     fun addAlignment(alignment: Alignment): T
 
-    fun alignment(value: Alignment): T?
+    fun alignment(value: Alignment): T
 
 }
 
@@ -56,9 +56,9 @@ class VxAlignmentMixin<T> : IVxAlignmentMixin<T> {
 
     }
 
-    override fun alignment(value: Alignment): T? {
+    override fun alignment(value: Alignment): T {
         velocityAlignment = value
-        return _child
+        return _child!!
     }
 
 

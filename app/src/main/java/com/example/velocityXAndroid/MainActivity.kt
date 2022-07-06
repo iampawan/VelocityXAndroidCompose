@@ -16,6 +16,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.velocityXAndroid.ui.theme.VxTheme
+import dev.codepur.velocityx.Vx
 import dev.codepur.velocityx.compose.VxBox
 import dev.codepur.velocityx.compose.text
 
@@ -39,8 +40,9 @@ class MainActivity : ComponentActivity() {
 @Composable
 fun Greeting(name: String) {
     VxBox {
-        "Hello $name".text.center.make()
-    }.red100.alignBottomRight.make()
+        "Hello $name".text.red800.center.make()
+        "Hello $name".text.xl6.red100.center.make()
+    }.color(Vx.emerald400).alignCenter.make()
 }
 
 @Composable

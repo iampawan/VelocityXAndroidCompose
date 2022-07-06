@@ -6,7 +6,6 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontStyle
@@ -15,7 +14,6 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.sp
-import dev.codepur.velocityx.Vx
 import dev.codepur.velocityx.mixin.IVxColorMixin
 import dev.codepur.velocityx.mixin.VxColorMixin
 
@@ -31,7 +29,6 @@ class VxText(val text: String) : VxTextAddOn<VxText>() {
         setChildToColor(this)
 
     }
-
 
     private var _text: String = text
     private var _fontFamily: FontFamily? = null
@@ -60,17 +57,6 @@ class VxText(val text: String) : VxTextAddOn<VxText>() {
         return this
     }
 
-    /// Sets color of the text
-    fun color(color: Color): VxText {
-        velocityColor = color
-        return this
-    }
-
-    /// Sets [color] of the text using Hex value
-    fun hexColor(colorHex: String): VxText {
-        velocityColor = Vx.hexToColor(colorHex)
-        return this
-    }
 
     fun maxLines(lines: Int): VxText {
         _maxLines = lines
