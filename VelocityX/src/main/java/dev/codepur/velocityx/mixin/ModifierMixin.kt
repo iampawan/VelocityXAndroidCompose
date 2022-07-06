@@ -2,6 +2,8 @@ package dev.codepur.velocityx.mixin
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.shape.CircleShape
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -16,6 +18,7 @@ interface IVxModifierMixin<T> {
     var velocityModifier: Modifier?
     fun setChildForModifier(child: T)
     fun modifier(value: Modifier): T
+    fun withRounded(value: Dp): T
     fun p(value: Dp): T
     fun px(value: Dp): T
     fun py(value: Dp): T
@@ -27,6 +30,19 @@ interface IVxModifierMixin<T> {
     fun clip(shape: Shape): T
     fun bg(color: Color, shape: Shape = RectangleShape): T
 
+
+    /// Rounding
+    val roundedSM: T
+        get() = withRounded(7.5.dp)
+
+    val rounded: T
+        get() = withRounded(15.0.dp)
+
+    val roundedLg: T
+        get() = withRounded(30.0.dp)
+
+    val circle: T
+        get() = clip(shape = CircleShape)
 
     /// Padding for all
     val p0: T
@@ -625,6 +641,16 @@ class VxModifierMixin<T> : IVxModifierMixin<T> {
             velocityModifier!!.padding(value)
         } else {
             Modifier.padding(value)
+        }
+
+        return _child!!
+    }
+
+    override fun withRounded(value: Dp): T {
+        velocityModifier = if (velocityModifier != null) {
+            velocityModifier!!.clip(RoundedCornerShape(value))
+        } else {
+            Modifier.clip(RoundedCornerShape(value))
         }
 
         return _child!!
