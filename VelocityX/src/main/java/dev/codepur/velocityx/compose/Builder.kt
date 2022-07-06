@@ -1,15 +1,12 @@
 package dev.codepur.velocityx.compose
 
+import android.annotation.SuppressLint
 import androidx.compose.runtime.Composable
 
- interface VxWidgetBuilder<T> where  T : Composable{
-    fun make(): T
+interface VxWidgetBuilder {
+
+    @SuppressLint("ComposableNaming")
+    @Composable
+    fun make()
 }
 
-interface VxWidgetContextBuilder<T> where  T : Composable{
-    fun make(): T
-}
-
-//abstract class VxTextSpanBuilder<TextSpan> {
-//    TextSpan make({Key? key});
-//}

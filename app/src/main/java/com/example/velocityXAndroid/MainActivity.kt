@@ -3,13 +3,20 @@ package com.example.velocityXAndroid
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
-import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.*
+import androidx.compose.material3.FloatingActionButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.dp
 import com.example.velocityXAndroid.ui.theme.VxTheme
+import dev.codepur.velocityx.compose.VxBox
 import dev.codepur.velocityx.compose.text
 
 class MainActivity : ComponentActivity() {
@@ -22,7 +29,7 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.surface
                 ) {
-                    Greeting("Android")
+                    Greeting(name = "Pawan")
                 }
             }
         }
@@ -31,7 +38,34 @@ class MainActivity : ComponentActivity() {
 
 @Composable
 fun Greeting(name: String) {
-    "Hello $name".text.center.make()
+    VxBox {
+        "Hello $name".text.center.make()
+    }.red100.alignBottomRight.make()
+}
+
+@Composable
+fun BoxExample() {
+    Box(Modifier.fillMaxSize()) {
+        Text("This text is drawn first", modifier = Modifier.align(Alignment.TopCenter))
+        Box(
+            Modifier
+                .align(Alignment.TopCenter)
+                .fillMaxHeight()
+                .width(
+                    50.dp
+                )
+                .background(Color.Blue)
+        )
+        Text("This text is drawn last", modifier = Modifier.align(Alignment.Center))
+        FloatingActionButton(
+            modifier = Modifier
+                .align(Alignment.BottomEnd)
+                .padding(12.dp),
+            onClick = {}
+        ) {
+            Text("+")
+        }
+    }
 }
 
 @Preview(showBackground = true)

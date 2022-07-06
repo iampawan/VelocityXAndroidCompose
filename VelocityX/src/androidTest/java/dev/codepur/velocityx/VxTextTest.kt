@@ -32,8 +32,8 @@ class VxTextTest {
                 }
             }
         }
-        
-        composeTestRule.onNodeWithText("Hello Android").assertIsDisplayed()
+        composeTestRule.onNodeWithText("Hello Android")
+            .assertIsDisplayed()
     }
 
 

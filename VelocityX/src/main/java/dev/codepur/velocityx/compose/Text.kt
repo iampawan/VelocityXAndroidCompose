@@ -16,14 +16,22 @@ import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.sp
 import dev.codepur.velocityx.Vx
+import dev.codepur.velocityx.mixin.IVxColorMixin
 import dev.codepur.velocityx.mixin.VxColorMixin
 
 
-class VxText(private val text: String) : VxColorMixin<VxText>() {
+open class VxTextAddOn<T>(
+    colorMixin: IVxColorMixin<T> = VxColorMixin<T>(),
+) :
+    IVxColorMixin<T> by colorMixin
+
+class VxText(val text: String) : VxTextAddOn<VxText>() {
 
     init {
         setChildToColor(this)
+
     }
+
 
     private var _text: String = text
     private var _fontFamily: FontFamily? = null
@@ -466,10 +474,10 @@ class VxText(private val text: String) : VxColorMixin<VxText>() {
         return this
     }
 
-
     @SuppressLint("ComposableNaming")
     @Composable
     fun make() {
+
         val currentContext = LocalTextStyle.current
         var newStyle = _themedStyle ?: _textStyle ?: currentContext
         val ts = TextStyle(
