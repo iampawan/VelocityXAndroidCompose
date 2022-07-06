@@ -1,6 +1,8 @@
 package dev.codepur.velocityx
 
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.unit.dp
 import java.util.*
 
 class Vx {
@@ -543,11 +545,18 @@ class Vx {
 
         /// Get color from the hex value
         fun hexToColor(code: String): Color =
-             Color(android.graphics.Color.parseColor(code))
+            Color(android.graphics.Color.parseColor(code))
 
         /// Get Random Non-Primary Color
-         val randomOpaqueColor:Color
-         get() = Color(Random().nextInt(0xffffff)).copy(alpha = 1.0f);
+        val randomOpaqueColor: Color
+            get() = Color(Random().nextInt(0xffffff)).copy(alpha = 1.0f)
+
+
+        ///Padding
+        /// All Fixed EdgeInsets
+        var m0: PaddingValues? = PaddingValues(all = 0.dp)
+        var m1: PaddingValues? = PaddingValues(all = 1.dp)
+        var m2: PaddingValues? = PaddingValues(all = 2.dp)
 
     }
 }

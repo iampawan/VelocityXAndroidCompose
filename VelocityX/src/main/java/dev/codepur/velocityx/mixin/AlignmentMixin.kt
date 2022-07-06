@@ -50,15 +50,15 @@ class VxAlignmentMixin<T> : IVxAlignmentMixin<T> {
         _child = child
     }
 
+    override fun alignment(value: Alignment): T {
+        velocityAlignment = value
+        return _child!!
+    }
+
     override fun addAlignment(alignment: Alignment): T {
         velocityAlignment = alignment
         return _child!!
 
-    }
-
-    override fun alignment(value: Alignment): T {
-        velocityAlignment = value
-        return _child!!
     }
 
 

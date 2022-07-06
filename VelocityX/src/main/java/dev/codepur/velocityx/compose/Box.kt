@@ -7,37 +7,41 @@ import androidx.compose.foundation.layout.BoxScope
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import dev.codepur.velocityx.mixin.IVxAlignmentMixin
-import dev.codepur.velocityx.mixin.IVxColorMixin
-import dev.codepur.velocityx.mixin.VxAlignmentMixin
-import dev.codepur.velocityx.mixin.VxColorMixin
+import dev.codepur.velocityx.mixin.*
 
 open class VxBoxAddOn<T>(
-    colorMixin: IVxColorMixin<T> = VxColorMixin<T>(),
-    alignmentMixin: IVxAlignmentMixin<T> = VxAlignmentMixin<T>()
+    colorMixin: IVxColorMixin<T> = VxColorMixin(),
+    alignmentMixin: IVxAlignmentMixin<T> = VxAlignmentMixin(),
+    modifierMixin: IVxModifierMixin<T> = VxModifierMixin()
 ) :
-    IVxColorMixin<T> by colorMixin, IVxAlignmentMixin<T> by alignmentMixin
+    IVxColorMixin<T> by colorMixin, IVxAlignmentMixin<T> by alignmentMixin,
+    IVxModifierMixin<T> by modifierMixin
 
 class VxBox(
     private val children: @Composable BoxScope.() -> Unit,
-) : VxBoxAddOn<VxBox>() {
+
+    ) : VxBoxAddOn<VxBox>() {
 
     init {
         setChildToColor(this)
         setChildForAlignment(this)
+        setChildForModifier(this)
 
     }
-    
+
     @SuppressLint("ComposableNaming")
     @Composable
     fun make() {
+        var currentModifier = velocityModifier ?: Modifier
+        if (velocityColor != null) {
+            currentModifier = currentModifier
+                .background(color = velocityColor!!)
+            
+        }
+
         return Box(
             contentAlignment = velocityAlignment ?: Alignment.TopStart,
-            modifier = velocityColor?.let {
-                Modifier.background(
-                    color = it
-                )
-            } ?: Modifier
+            modifier = currentModifier
         ) {
             children.invoke(this)
         }
