@@ -21,12 +21,12 @@ open class VxColumnAddOn<T>(
     IVxColorMixin<T> by colorMixin,
     IVxModifierMixin<T> by modifierMixin
 
-class VStack(
+class VxColumn(
     private val horizontalAlignment: Alignment.Horizontal = Alignment.Start,
     private val verticalArrangement: Arrangement.Vertical = Arrangement.Top,
     private val children: @Composable ColumnScope.() -> Unit
 
-) : VxColumnAddOn<VStack>() {
+) : VxColumnAddOn<VxColumn>() {
 
     init {
         setChildToColor(this)

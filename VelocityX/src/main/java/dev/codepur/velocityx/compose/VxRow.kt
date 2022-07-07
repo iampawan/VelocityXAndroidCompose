@@ -21,12 +21,12 @@ open class VxRowAddOn<T>(
     IVxColorMixin<T> by colorMixin,
     IVxModifierMixin<T> by modifierMixin
 
-class HStack(
+class VxRow(
     private val horizontalArrangement: Arrangement.Horizontal = Arrangement.Start,
     private val verticalAlignment: Alignment.Vertical = Alignment.Top,
     private val children: @Composable RowScope.() -> Unit
 
-) : VxRowAddOn<HStack>() {
+) : VxRowAddOn<VxRow>() {
 
     init {
         setChildToColor(this)

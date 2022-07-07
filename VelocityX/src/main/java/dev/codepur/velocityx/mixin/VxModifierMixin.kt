@@ -49,18 +49,18 @@ interface IVxModifierMixin<T> {
     fun rotate(degrees: Float): T
     fun scale(x: Float, y: Float): T
     fun scale(scale: Float): T
-    fun horizontalScroll(
+    fun scrollHorizontal(
         state: ScrollState,
-        enabled: Boolean,
-        flingBehavior: FlingBehavior?,
-        reverseScrolling: Boolean
+        enabled: Boolean = true,
+        flingBehavior: FlingBehavior? = null,
+        reverseScrolling: Boolean = false
     ): T
 
-    fun verticalScroll(
+    fun scrollVertical(
         state: ScrollState,
-        enabled: Boolean,
-        flingBehavior: FlingBehavior?,
-        reverseScrolling: Boolean
+        enabled: Boolean = true,
+        flingBehavior: FlingBehavior? = null,
+        reverseScrolling: Boolean = false
     ): T
 
     fun linearGradient(
@@ -1010,7 +1010,7 @@ class VxModifierMixin<T> : IVxModifierMixin<T> {
         return _child!!
     }
 
-    override fun horizontalScroll(
+    override fun scrollHorizontal(
         state: ScrollState,
         enabled: Boolean,
         flingBehavior: FlingBehavior?,
@@ -1025,7 +1025,7 @@ class VxModifierMixin<T> : IVxModifierMixin<T> {
         return _child!!
     }
 
-    override fun verticalScroll(
+    override fun scrollVertical(
         state: ScrollState,
         enabled: Boolean,
         flingBehavior: FlingBehavior?,

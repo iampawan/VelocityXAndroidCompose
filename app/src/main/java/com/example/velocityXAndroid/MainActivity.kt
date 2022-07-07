@@ -3,6 +3,7 @@ package com.example.velocityXAndroid
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.compose.foundation.ScrollState
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
@@ -20,10 +21,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.velocityXAndroid.ui.theme.VxTheme
 import dev.codepur.velocityx.Vx
-import dev.codepur.velocityx.compose.HStack
-import dev.codepur.velocityx.compose.VxBox
-import dev.codepur.velocityx.compose.VxSpacer
-import dev.codepur.velocityx.compose.text
+import dev.codepur.velocityx.compose.*
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -45,13 +43,16 @@ class MainActivity : ComponentActivity() {
 
 @Composable
 fun Greeting(name: String) {
-    HStack {
-        VxBox(
-            children = {
-                "Hello $name".text.white.center.xl3.italic.make()
-            },
-        ).blue600.alignCenter.p12.square(size = Vx.dp(200))
-            .border(color = Vx.white, shape = CircleShape).circle.shadow4Xl.make()
+    VxRow {
+        VxCard {
+            VxBox(
+                children = {
+                    "Hello $name".text.white.center.xl3.italic.make()
+                },
+            ).blue600.alignCenter.p12.square(size = Vx.dp(200))
+                .border(color = Vx.white, shape = CircleShape).circle.shadow4Xl.make()
+        }.blue300.p16.make()
+
         VxSpacer().w20().make()
         VxBox(
             children = {
@@ -59,7 +60,7 @@ fun Greeting(name: String) {
             },
         ).blue600.alignCenter.p12.square(size = 200.dp)
             .border(color = Vx.white, shape = CircleShape).circle.shadow4Xl.make()
-    }.purple800.make()
+    }.purple800.scrollHorizontal(ScrollState(0)).make()
 
 }
 
