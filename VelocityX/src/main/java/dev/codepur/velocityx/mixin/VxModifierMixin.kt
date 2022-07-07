@@ -35,6 +35,7 @@ interface IVxModifierMixin<T> {
     fun size(value: Dp): T
     fun size(width: Dp, height: Dp): T
     fun sizeIn(minWidth: Dp, maxWidth: Dp, minHeight: Dp, maxHeight: Dp): T
+    fun aspectRatio(ratio: Float, matchHeightConstraintsFirst: Boolean = false): T
     fun offset(x: Dp, y: Dp): T
     fun clip(shape: Shape): T
     fun bg(color: Color, shape: Shape = RectangleShape): T
@@ -283,6 +284,15 @@ interface IVxModifierMixin<T> {
     fun fillMaxSize(fraction: Float): T
 
     @Composable
+    fun wPCT(w: Number): T
+
+    @Composable
+    fun hPCT(h: Number): T
+
+    @Composable
+    fun whPCT(v: Number): T
+
+    @Composable
     fun forcedWidth(width: Dp): T
 
     @Composable
@@ -523,194 +533,194 @@ class VxModifierMixin<T> : IVxModifierMixin<T> {
     }
 
     @Composable
-    override fun w0(): T = setCustomWidth(w = 0.0)
+    override fun w0(): T = wPCT(w = 0.0)
 
     @Composable
-    override fun w1(): T = setCustomWidth(w = 1.0)
+    override fun w1(): T = wPCT(w = 1.0)
 
     @Composable
-    override fun w2(): T = setCustomWidth(w = 2.0)
+    override fun w2(): T = wPCT(w = 2.0)
 
     @Composable
-    override fun w4(): T = setCustomWidth(w = 4.0)
+    override fun w4(): T = wPCT(w = 4.0)
 
     @Composable
-    override fun w8(): T = setCustomWidth(w = 8.0)
+    override fun w8(): T = wPCT(w = 8.0)
 
     @Composable
-    override fun w10(): T = setCustomWidth(w = 10.0)
+    override fun w10(): T = wPCT(w = 10.0)
 
     @Composable
-    override fun w12(): T = setCustomWidth(w = 12.0)
+    override fun w12(): T = wPCT(w = 12.0)
 
     @Composable
-    override fun w16(): T = setCustomWidth(w = 16.0)
+    override fun w16(): T = wPCT(w = 16.0)
 
     @Composable
-    override fun w20(): T = setCustomWidth(w = 20.0)
+    override fun w20(): T = wPCT(w = 20.0)
 
     @Composable
-    override fun w24(): T = setCustomWidth(w = 24.0)
+    override fun w24(): T = wPCT(w = 24.0)
 
     @Composable
-    override fun w32(): T = setCustomWidth(w = 32.0)
+    override fun w32(): T = wPCT(w = 32.0)
 
     @Composable
-    override fun w40(): T = setCustomWidth(w = 40.0)
+    override fun w40(): T = wPCT(w = 40.0)
 
     @Composable
-    override fun w48(): T = setCustomWidth(w = 48.0)
+    override fun w48(): T = wPCT(w = 48.0)
 
     @Composable
-    override fun w60(): T = setCustomWidth(w = 60.0)
+    override fun w60(): T = wPCT(w = 60.0)
 
     @Composable
-    override fun w75(): T = setCustomWidth(w = 75.0)
+    override fun w75(): T = wPCT(w = 75.0)
 
     @Composable
-    override fun wHalf(): T = setCustomWidth(w = 50.0)
+    override fun wHalf(): T = wPCT(w = 50.0)
 
     @Composable
-    override fun wOneThird(): T = setCustomWidth(w = 33.33)
+    override fun wOneThird(): T = wPCT(w = 33.33)
 
     @Composable
-    override fun wTwoThird(): T = setCustomWidth(w = 66.66)
+    override fun wTwoThird(): T = wPCT(w = 66.66)
 
     @Composable
-    override fun wOneForth(): T = setCustomWidth(w = 23.0)
+    override fun wOneForth(): T = wPCT(w = 23.0)
 
     @Composable
-    override fun wThreeForth(): T = setCustomWidth(w = 75.0)
+    override fun wThreeForth(): T = wPCT(w = 75.0)
 
     @Composable
-    override fun wFull(): T = setCustomWidth(w = 100.0)
+    override fun wFull(): T = wPCT(w = 100.0)
 
 
     @Composable
-    override fun h0(): T = setCustomHeight(h = 0.0)
+    override fun h0(): T = hPCT(h = 0.0)
 
     @Composable
-    override fun h1(): T = setCustomHeight(h = 1.0)
+    override fun h1(): T = hPCT(h = 1.0)
 
     @Composable
-    override fun h2(): T = setCustomHeight(h = 2.0)
+    override fun h2(): T = hPCT(h = 2.0)
 
     @Composable
-    override fun h4(): T = setCustomHeight(h = 4.0)
+    override fun h4(): T = hPCT(h = 4.0)
 
     @Composable
-    override fun h8(): T = setCustomHeight(h = 8.0)
+    override fun h8(): T = hPCT(h = 8.0)
 
     @Composable
-    override fun h10(): T = setCustomHeight(h = 10.0)
+    override fun h10(): T = hPCT(h = 10.0)
 
     @Composable
-    override fun h12(): T = setCustomHeight(h = 12.0)
+    override fun h12(): T = hPCT(h = 12.0)
 
     @Composable
-    override fun h16(): T = setCustomHeight(h = 16.0)
+    override fun h16(): T = hPCT(h = 16.0)
 
     @Composable
-    override fun h20(): T = setCustomHeight(h = 20.0)
+    override fun h20(): T = hPCT(h = 20.0)
 
     @Composable
-    override fun h24(): T = setCustomHeight(h = 24.0)
+    override fun h24(): T = hPCT(h = 24.0)
 
     @Composable
-    override fun h32(): T = setCustomHeight(h = 32.0)
+    override fun h32(): T = hPCT(h = 32.0)
 
     @Composable
-    override fun h40(): T = setCustomHeight(h = 40.0)
+    override fun h40(): T = hPCT(h = 40.0)
 
     @Composable
-    override fun h48(): T = setCustomHeight(h = 48.0)
+    override fun h48(): T = hPCT(h = 48.0)
 
     @Composable
-    override fun h60(): T = setCustomHeight(h = 60.0)
+    override fun h60(): T = hPCT(h = 60.0)
 
     @Composable
-    override fun h75(): T = setCustomHeight(h = 75.0)
+    override fun h75(): T = hPCT(h = 75.0)
 
     @Composable
-    override fun hHalf(): T = setCustomHeight(h = 50.0)
+    override fun hHalf(): T = hPCT(h = 50.0)
 
     @Composable
-    override fun hOneThird(): T = setCustomHeight(h = 33.33)
+    override fun hOneThird(): T = hPCT(h = 33.33)
 
     @Composable
-    override fun hThoThird(): T = setCustomHeight(h = 66.66)
+    override fun hThoThird(): T = hPCT(h = 66.66)
 
     @Composable
-    override fun hOneForth(): T = setCustomHeight(h = 23.0)
+    override fun hOneForth(): T = hPCT(h = 23.0)
 
     @Composable
-    override fun hThreeForth(): T = setCustomHeight(h = 75.0)
+    override fun hThreeForth(): T = hPCT(h = 75.0)
 
     @Composable
-    override fun hFull(): T = setCustomHeight(h = 100.0)
+    override fun hFull(): T = hPCT(h = 100.0)
 
     @Composable
-    override fun wh0(): T = setCustomWidthHeight(v = 0.0)
+    override fun wh0(): T = whPCT(v = 0.0)
 
     @Composable
-    override fun wh1(): T = setCustomWidthHeight(v = 1.0)
+    override fun wh1(): T = whPCT(v = 1.0)
 
     @Composable
-    override fun wh2(): T = setCustomWidthHeight(v = 2.0)
+    override fun wh2(): T = whPCT(v = 2.0)
 
     @Composable
-    override fun wh4(): T = setCustomWidthHeight(v = 4.0)
+    override fun wh4(): T = whPCT(v = 4.0)
 
     @Composable
-    override fun wh8(): T = setCustomWidthHeight(v = 8.0)
+    override fun wh8(): T = whPCT(v = 8.0)
 
     @Composable
-    override fun wh10(): T = setCustomWidthHeight(v = 10.0)
+    override fun wh10(): T = whPCT(v = 10.0)
 
     @Composable
-    override fun wh12(): T = setCustomWidthHeight(v = 12.0)
+    override fun wh12(): T = whPCT(v = 12.0)
 
     @Composable
-    override fun wh16(): T = setCustomWidthHeight(v = 16.0)
+    override fun wh16(): T = whPCT(v = 16.0)
 
     @Composable
-    override fun wh20(): T = setCustomWidthHeight(v = 20.0)
+    override fun wh20(): T = whPCT(v = 20.0)
 
     @Composable
-    override fun wh24(): T = setCustomWidthHeight(v = 24.0)
+    override fun wh24(): T = whPCT(v = 24.0)
 
     @Composable
-    override fun wh32(): T = setCustomWidthHeight(v = 32.0)
+    override fun wh32(): T = whPCT(v = 32.0)
 
     @Composable
-    override fun wh40(): T = setCustomWidthHeight(v = 40.0)
+    override fun wh40(): T = whPCT(v = 40.0)
 
     @Composable
-    override fun wh48(): T = setCustomWidthHeight(v = 48.0)
+    override fun wh48(): T = whPCT(v = 48.0)
 
     @Composable
-    override fun wh60(): T = setCustomWidthHeight(v = 60.0)
+    override fun wh60(): T = whPCT(v = 60.0)
 
     @Composable
-    override fun wh75(): T = setCustomWidthHeight(v = 75.0)
+    override fun wh75(): T = whPCT(v = 75.0)
 
     @Composable
-    override fun whHalf(): T = setCustomWidthHeight(v = 50.0)
+    override fun whHalf(): T = whPCT(v = 50.0)
 
     @Composable
-    override fun whOneThird(): T = setCustomWidthHeight(v = 33.33)
+    override fun whOneThird(): T = whPCT(v = 33.33)
 
     @Composable
-    override fun whTwoThird(): T = setCustomWidthHeight(v = 66.66)
+    override fun whTwoThird(): T = whPCT(v = 66.66)
 
     @Composable
-    override fun whOneForth(): T = setCustomWidthHeight(v = 23.0)
+    override fun whOneForth(): T = whPCT(v = 23.0)
 
     @Composable
-    override fun whThreeForth(): T = setCustomWidthHeight(v = 75.0)
+    override fun whThreeForth(): T = whPCT(v = 75.0)
 
     @Composable
-    override fun whFull(): T = setCustomWidthHeight(v = 100.0)
+    override fun whFull(): T = whPCT(v = 100.0)
 
     override fun offset(x: Dp, y: Dp): T {
         velocityModifier = if (velocityModifier != null) {
@@ -760,7 +770,7 @@ class VxModifierMixin<T> : IVxModifierMixin<T> {
     }
 
     @Composable
-    private fun setCustomWidth(w: Number): T {
+    override fun wPCT(w: Number): T {
         val screenWidth = LocalConfiguration.current.screenWidthDp
         val width = (screenWidth / 100.0) * w.toDouble()
         velocityModifier = if (velocityModifier != null) {
@@ -773,7 +783,7 @@ class VxModifierMixin<T> : IVxModifierMixin<T> {
     }
 
     @Composable
-    private fun setCustomHeight(h: Number): T {
+    override fun hPCT(h: Number): T {
         val screenHeight = LocalConfiguration.current.screenHeightDp
         val width = (screenHeight / 100.0) * h.toDouble()
         velocityModifier = if (velocityModifier != null) {
@@ -786,7 +796,7 @@ class VxModifierMixin<T> : IVxModifierMixin<T> {
     }
 
     @Composable
-    private fun setCustomWidthHeight(v: Number): T {
+    override fun whPCT(v: Number): T {
         val screenWidth = LocalConfiguration.current.screenWidthDp
         val screenHeight = LocalConfiguration.current.screenHeightDp
         val width = (screenWidth / 100.0) * v.toDouble()
@@ -814,6 +824,22 @@ class VxModifierMixin<T> : IVxModifierMixin<T> {
             velocityModifier!!.width(value)
         } else {
             Modifier.width(value)
+        }
+
+        return _child!!
+    }
+
+    override fun aspectRatio(ratio: Float, matchHeightConstraintsFirst: Boolean): T {
+        velocityModifier = if (velocityModifier != null) {
+            velocityModifier!!.aspectRatio(
+                ratio = ratio,
+                matchHeightConstraintsFirst = matchHeightConstraintsFirst
+            )
+        } else {
+            Modifier.aspectRatio(
+                ratio = ratio,
+                matchHeightConstraintsFirst = matchHeightConstraintsFirst
+            )
         }
 
         return _child!!

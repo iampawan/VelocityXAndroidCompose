@@ -33,7 +33,7 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.primary
                 ) {
-                    Greeting(name = "Pawan")
+                    Greeting(name = "PK")
 //                    BoxExample()
                 }
             }
@@ -49,16 +49,15 @@ fun Greeting(name: String) {
                 children = {
                     "Hello $name".text.white.center.xl3.italic.make()
                 },
-            ).blue600.alignCenter.p12.square(size = Vx.dp(200))
+            ).blue600.alignCenter.p12.square(size = Vx.dp(100))
                 .border(color = Vx.white, shape = CircleShape).circle.shadow4Xl.make()
         }.blue300.p16.make()
-
-        VxSpacer().w20().make()
+        VxWidthBox(20)
         VxBox(
             children = {
                 "Hello $name".text.white.center.xl3.italic.make()
             },
-        ).blue600.alignCenter.p12.square(size = 200.dp)
+        ).blue600.alignCenter.p16.square(size = 100.dp)
             .border(color = Vx.white, shape = CircleShape).circle.shadow4Xl.make()
     }.purple800.scrollHorizontal(ScrollState(0)).make()
 
