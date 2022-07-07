@@ -1,19 +1,18 @@
 package dev.codepur.velocityx.mixin
 
-import androidx.compose.foundation.BorderStroke
-import androidx.compose.foundation.background
-import androidx.compose.foundation.border
-import androidx.compose.foundation.clickable
+import androidx.compose.foundation.*
+import androidx.compose.foundation.gestures.FlingBehavior
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.draw.rotate
+import androidx.compose.ui.draw.scale
 import androidx.compose.ui.draw.shadow
-import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.graphics.RectangleShape
-import androidx.compose.ui.graphics.Shape
+import androidx.compose.ui.geometry.Offset
+import androidx.compose.ui.graphics.*
 import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
@@ -45,6 +44,44 @@ interface IVxModifierMixin<T> {
         shape: Shape? = RectangleShape,
     ): T
 
+    fun rotate(degrees: Float): T
+    fun scale(x: Float, y: Float): T
+    fun horizontalScroll(
+        state: ScrollState,
+        enabled: Boolean,
+        flingBehavior: FlingBehavior?,
+        reverseScrolling: Boolean
+    ): T
+
+    fun verticalScroll(
+        state: ScrollState,
+        enabled: Boolean,
+        flingBehavior: FlingBehavior?,
+        reverseScrolling: Boolean
+    ): T
+
+    fun linearGradient(
+        colorStops: Array<Pair<Float, Color>>? = null,
+        colors: List<Color>? = null,
+        start: Offset = Offset.Zero,
+        end: Offset = Offset.Infinite,
+        tileMode: TileMode = TileMode.Clamp
+    ): T
+
+    fun radialGradient(
+        colorStops: Array<Pair<Float, Color>>?,
+        colors: List<Color>?,
+        center: Offset,
+        radius: Float,
+        tileMode: TileMode
+    ): T
+
+    fun sweepGradient(
+        colorStops: Array<Pair<Float, Color>>?,
+        colors: List<Color>?,
+        center: Offset,
+    ): T
+
 
     /// Rounding
     val roundedSm: T
@@ -59,6 +96,60 @@ interface IVxModifierMixin<T> {
     val circle: T
         get() = clip(shape = CircleShape)
 
+    /// Rotation
+    val rotate0: T
+        get() = rotate(0f)
+    val rotate15: T
+        get() = rotate(15f)
+    val rotateN15: T
+        get() = rotate(-15f)
+    val rotate30: T
+        get() = rotate(30f)
+    val rotateN30: T
+        get() = rotate(-30f)
+    val rotate45: T
+        get() = rotate(45f)
+    val rotateN45: T
+        get() = rotate(-45f)
+    val rotate60: T
+        get() = rotate(60f)
+    val rotateN60: T
+        get() = rotate(-60f)
+    val rotate75: T
+        get() = rotate(75f)
+    val rotateN75: T
+        get() = rotate(-75f)
+    val rotate90: T
+        get() = rotate(90f)
+    val rotateN90: T
+        get() = rotate(-90f)
+    val rotate120: T
+        get() = rotate(120f)
+    val rotateN120: T
+        get() = rotate(-120f)
+    val rotate180: T
+        get() = rotate(180f)
+    val rotateN180: T
+        get() = rotate(-180f)
+    val rotate270: T
+        get() = rotate(270f)
+    val rotateN270: T
+        get() = rotate(-270f)
+
+
+    /// Scaling
+    val scale0: T
+        get() = scale(0f, y = 0f)
+    val scale50: T
+        get() = scale(0.5f, y = 0.5f)
+    val scale100: T
+        get() = scale(1f, y = 1f)
+    val scale150: T
+        get() = scale(1.5f, y = 1.5f)
+    val scale200: T
+        get() = scale(2f, y = 2f)
+    val scaleN200: T
+        get() = scale(-2f, y = -2f)
 
     /// Shadow
     val shadowXs: T
@@ -876,6 +967,74 @@ class VxModifierMixin<T> : IVxModifierMixin<T> {
         return _child!!
     }
 
+    override fun rotate(degrees: Float): T {
+        velocityModifier = if (velocityModifier != null) {
+            velocityModifier!!.rotate(degrees = degrees)
+        } else {
+            Modifier.rotate(degrees = degrees)
+        }
+
+        return _child!!
+    }
+
+    override fun scale(x: Float, y: Float): T {
+        velocityModifier = if (velocityModifier != null) {
+            velocityModifier!!.scale(scaleX = x, scaleY = y)
+        } else {
+            Modifier.scale(scaleX = x, scaleY = y)
+        }
+
+        return _child!!
+    }
+
+    override fun scale(scale: Float): T {
+        velocityModifier = if (velocityModifier != null) {
+            velocityModifier!!.scale(scale)
+        } else {
+            Modifier.scale(scale)
+        }
+
+        return _child!!
+    }
+
+    override fun horizontalScroll(
+        state: ScrollState,
+        enabled: Boolean,
+        flingBehavior: FlingBehavior?,
+        reverseScrolling: Boolean
+    ): T {
+        velocityModifier = if (velocityModifier != null) {
+            velocityModifier!!.horizontalScroll(state, enabled, flingBehavior, reverseScrolling)
+        } else {
+            Modifier.horizontalScroll(state, enabled, flingBehavior, reverseScrolling)
+        }
+
+        return _child!!
+    }
+
+    override fun verticalScroll(
+        state: ScrollState,
+        enabled: Boolean,
+        flingBehavior: FlingBehavior?,
+        reverseScrolling: Boolean
+    ): T {
+        velocityModifier = if (velocityModifier != null) {
+            velocityModifier!!.verticalScroll(state, enabled, flingBehavior, reverseScrolling)
+        } else {
+            Modifier.verticalScroll(state, enabled, flingBehavior, reverseScrolling)
+        }
+
+        return _child!!
+    }
+
+
+    /**
+     * Modify element to add border with appearance specified with a [border] and a [shape] and clip it.
+     *
+     * @param  [BorderStroke] class that specifies border appearance, such as size and color
+     * @param shape shape of the border
+     */
+
     override fun border(width: Dp?, color: Color?, shape: Shape?): T {
         velocityModifier = if (velocityModifier != null) {
             velocityModifier!!.border(
@@ -884,11 +1043,146 @@ class VxModifierMixin<T> : IVxModifierMixin<T> {
             )
 
         } else {
-
             Modifier.border(
                 border = BorderStroke(width = width!!, color = color!!),
                 shape = shape!!
             )
+        }
+
+        return _child!!
+    }
+
+    override fun linearGradient(
+        colorStops: Array<Pair<Float, Color>>?,
+        colors: List<Color>?,
+        start: Offset,
+        end: Offset,
+        tileMode: TileMode
+    ): T {
+        velocityModifier = if (velocityModifier != null) {
+            if (colorStops != null) {
+                velocityModifier!!.background(
+                    brush = Brush.linearGradient(
+                        colorStops = colorStops,
+                        start = start,
+                        end = end,
+                        tileMode = tileMode,
+
+                        )
+                )
+            } else {
+                velocityModifier!!.background(
+                    brush = Brush.linearGradient(
+                        colors = colors!!,
+                        start = start,
+                        end = end,
+                        tileMode = tileMode
+
+                    )
+                )
+            }
+
+        } else {
+            if (colorStops != null) {
+                Modifier.background(
+                    brush = Brush.linearGradient(
+                        colorStops = colorStops,
+                        start = start,
+                        end = end,
+                        tileMode = tileMode
+
+                    )
+                )
+            } else {
+                Modifier.background(
+                    brush = Brush.linearGradient(
+                        colors = colors!!,
+                        start = start,
+                        end = end,
+                        tileMode = tileMode
+                    )
+                )
+            }
+        }
+
+        return _child!!
+    }
+
+    override fun radialGradient(
+        colorStops: Array<Pair<Float, Color>>?,
+        colors: List<Color>?,
+        center: Offset,
+        radius: Float,
+        tileMode: TileMode
+    ): T {
+        velocityModifier = if (velocityModifier != null) {
+            if (colorStops != null) {
+                velocityModifier!!.background(
+                    brush = Brush.radialGradient(
+                        colorStops = colorStops,
+                        center = center,
+                        radius = radius,
+                        tileMode = tileMode
+
+                    )
+                )
+            } else {
+                velocityModifier!!.background(
+                    brush = Brush.radialGradient(
+                        colors = colors!!, radius = radius, center = center, tileMode = tileMode
+
+                    )
+                )
+            }
+
+        } else {
+            if (colorStops != null) {
+                Modifier.background(
+                    brush = Brush.radialGradient(
+                        colorStops = colorStops,
+                        center = center,
+                        radius = radius,
+                        tileMode = tileMode
+                    )
+                )
+            } else {
+                Modifier.background(
+                    brush = Brush.radialGradient(
+                        colors = colors!!, radius = radius, center = center, tileMode = tileMode
+                    )
+                )
+            }
+        }
+
+        return _child!!
+    }
+
+    override fun sweepGradient(
+        colorStops: Array<Pair<Float, Color>>?,
+        colors: List<Color>?,
+        center: Offset,
+    ): T {
+        velocityModifier = if (velocityModifier != null) {
+            if (colorStops != null) {
+                velocityModifier!!.background(
+                    brush = Brush.sweepGradient(colorStops = colorStops, center = center)
+                )
+            } else {
+                velocityModifier!!.background(
+                    brush = Brush.sweepGradient(colors = colors!!, center = center)
+                )
+            }
+
+        } else {
+            if (colorStops != null) {
+                Modifier.background(
+                    brush = Brush.sweepGradient(colorStops = colorStops, center = center)
+                )
+            } else {
+                Modifier.background(
+                    brush = Brush.sweepGradient(colors = colors!!, center = center)
+                )
+            }
         }
 
         return _child!!
