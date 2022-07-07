@@ -6,6 +6,7 @@ import androidx.activity.compose.setContent
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
@@ -19,6 +20,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.velocityXAndroid.ui.theme.VxTheme
 import dev.codepur.velocityx.Vx
+import dev.codepur.velocityx.compose.HStack
 import dev.codepur.velocityx.compose.VxBox
 import dev.codepur.velocityx.compose.text
 
@@ -30,7 +32,7 @@ class MainActivity : ComponentActivity() {
                 // A surface container using the 'background' color from the theme
                 Surface(
                     modifier = Modifier.fillMaxSize(),
-                    color = MaterialTheme.colorScheme.inversePrimary
+                    color = MaterialTheme.colorScheme.primary
                 ) {
                     Greeting(name = "Pawan")
 //                    BoxExample()
@@ -43,16 +45,20 @@ class MainActivity : ComponentActivity() {
 @Composable
 fun Greeting(name: String) {
 
-    VxBox(
-        children = {
-            "Hello $name".text.white.center.xl3.italic.make()
-        },
-    ).linearGradient(
-        colors = listOf(
-            Vx.cyan500,
-            Vx.blue800
-        )
-    ).alignCenter.p12.square(size = 200.dp).border(color = Vx.white).scale100.make()
+    HStack {
+        VxBox(
+            children = {
+                "Hello $name".text.white.center.xl3.italic.make()
+            },
+        ).blue600.alignCenter.p12.square(size = 200.dp)
+            .border(color = Vx.white, shape = CircleShape).circle.shadow4Xl.make()
+        VxBox(
+            children = {
+                "Hello $name".text.white.center.xl3.italic.make()
+            },
+        ).blue600.alignCenter.p12.square(size = 200.dp)
+            .border(color = Vx.white, shape = CircleShape).circle.shadow4Xl.make()
+    }.red400.make()
 
 }
 

@@ -14,6 +14,7 @@ import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.graphics.*
 import androidx.compose.ui.platform.LocalConfiguration
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import dev.codepur.velocityx.Vx
@@ -38,6 +39,7 @@ interface IVxModifierMixin<T> {
     fun clip(shape: Shape): T
     fun bg(color: Color, shape: Shape = RectangleShape): T
     fun clickable(onClick: () -> Unit, enabled: Boolean = true): T
+    fun testTag(tag: String): T
     fun border(
         width: Dp? = 2.dp,
         color: Color? = Vx.black,
@@ -859,7 +861,7 @@ class VxModifierMixin<T> : IVxModifierMixin<T> {
 
     override fun withShadow(value: Dp): T {
         velocityModifier = if (velocityModifier != null) {
-            velocityModifier!!.shadow(value)
+            velocityModifier!!.shadow(500.dp)
         } else {
             Modifier.shadow(value)
 
@@ -993,6 +995,16 @@ class VxModifierMixin<T> : IVxModifierMixin<T> {
             velocityModifier!!.scale(scale)
         } else {
             Modifier.scale(scale)
+        }
+
+        return _child!!
+    }
+
+    override fun testTag(tag: String): T {
+        velocityModifier = if (velocityModifier != null) {
+            velocityModifier!!.testTag(tag)
+        } else {
+            Modifier.testTag(tag)
         }
 
         return _child!!
