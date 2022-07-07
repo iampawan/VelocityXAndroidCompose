@@ -1,6 +1,8 @@
 package dev.codepur.velocityx.mixin
 
+import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.background
+import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.CircleShape
@@ -15,6 +17,7 @@ import androidx.compose.ui.graphics.Shape
 import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
+import dev.codepur.velocityx.Vx
 
 interface IVxModifierMixin<T> {
     var velocityModifier: Modifier?
@@ -36,6 +39,11 @@ interface IVxModifierMixin<T> {
     fun clip(shape: Shape): T
     fun bg(color: Color, shape: Shape = RectangleShape): T
     fun clickable(onClick: () -> Unit, enabled: Boolean = true): T
+    fun border(
+        width: Dp? = 2.dp,
+        color: Color? = Vx.black,
+        shape: Shape? = RectangleShape,
+    ): T
 
 
     /// Rounding
@@ -863,6 +871,24 @@ class VxModifierMixin<T> : IVxModifierMixin<T> {
             velocityModifier!!.clickable(enabled = enabled, onClick = onClick)
         } else {
             Modifier.clickable(enabled = enabled, onClick = onClick)
+        }
+
+        return _child!!
+    }
+
+    override fun border(width: Dp?, color: Color?, shape: Shape?): T {
+        velocityModifier = if (velocityModifier != null) {
+            velocityModifier!!.border(
+                border = BorderStroke(width = width!!, color = color!!),
+                shape = shape!!
+            )
+
+        } else {
+
+            Modifier.border(
+                border = BorderStroke(width = width!!, color = color!!),
+                shape = shape!!
+            )
         }
 
         return _child!!

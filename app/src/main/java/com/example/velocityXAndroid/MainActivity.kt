@@ -46,7 +46,7 @@ fun Greeting(name: String) {
         children = {
             "Hello $name".text.white.center.xl3.italic.make()
         },
-    ).blue700.alignCenter.p12.roundedLg.square(size = 200.dp).shadowXl.make()
+    ).blue700.alignCenter.p12.square(size = 200.dp).border().make()
 
 }
 
