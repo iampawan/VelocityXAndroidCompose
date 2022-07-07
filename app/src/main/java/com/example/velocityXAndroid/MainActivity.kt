@@ -50,9 +50,9 @@ fun Greeting(name: String) {
             children = {
                 "Hello $name".text.white.center.xl3.italic.make()
             },
-        ).blue600.alignCenter.p12.square(size = 200.dp)
+        ).blue600.alignCenter.p12.square(size = Vx.dp(200))
             .border(color = Vx.white, shape = CircleShape).circle.shadow4Xl.make()
-        VxSpacer().red300.w20().make()
+        VxSpacer().w20().make()
         VxBox(
             children = {
                 "Hello $name".text.white.center.xl3.italic.make()

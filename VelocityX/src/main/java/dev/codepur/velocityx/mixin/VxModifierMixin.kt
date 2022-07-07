@@ -760,9 +760,9 @@ class VxModifierMixin<T> : IVxModifierMixin<T> {
     }
 
     @Composable
-    private fun setCustomWidth(w: Double): T {
+    private fun setCustomWidth(w: Number): T {
         val screenWidth = LocalConfiguration.current.screenWidthDp
-        val width = (screenWidth / 100.0) * w
+        val width = (screenWidth / 100.0) * w.toDouble()
         velocityModifier = if (velocityModifier != null) {
             velocityModifier!!
                 .requiredWidth(width.dp)
@@ -773,9 +773,9 @@ class VxModifierMixin<T> : IVxModifierMixin<T> {
     }
 
     @Composable
-    private fun setCustomHeight(h: Double): T {
+    private fun setCustomHeight(h: Number): T {
         val screenHeight = LocalConfiguration.current.screenHeightDp
-        val width = (screenHeight / 100.0) * h
+        val width = (screenHeight / 100.0) * h.toDouble()
         velocityModifier = if (velocityModifier != null) {
             velocityModifier!!
                 .requiredHeight(width.dp)
@@ -786,11 +786,11 @@ class VxModifierMixin<T> : IVxModifierMixin<T> {
     }
 
     @Composable
-    private fun setCustomWidthHeight(v: Double): T {
+    private fun setCustomWidthHeight(v: Number): T {
         val screenWidth = LocalConfiguration.current.screenWidthDp
         val screenHeight = LocalConfiguration.current.screenHeightDp
-        val width = (screenWidth / 100.0) * v
-        val height = (screenHeight / 100.0) * v
+        val width = (screenWidth / 100.0) * v.toDouble()
+        val height = (screenHeight / 100.0) * v.toDouble()
         velocityModifier = if (velocityModifier != null) {
             velocityModifier!!
                 .requiredWidth(width.dp)

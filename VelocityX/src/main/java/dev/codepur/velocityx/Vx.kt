@@ -30,6 +30,8 @@ class Vx {
         val dp56: Dp = 56.0.dp
         val dp64: Dp = 64.0.dp
 
+        fun dp(value: Number): Dp = value.toDouble().dp
+
         ///Colors
         const val blackHex: String = "#000000"
         const val whiteHex: String = "#ffffff"
