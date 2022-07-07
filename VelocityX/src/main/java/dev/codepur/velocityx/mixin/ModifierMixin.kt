@@ -46,6 +46,7 @@ interface IVxModifierMixin<T> {
 
     fun rotate(degrees: Float): T
     fun scale(x: Float, y: Float): T
+    fun scale(scale: Float): T
     fun horizontalScroll(
         state: ScrollState,
         enabled: Boolean,
