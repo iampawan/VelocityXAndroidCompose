@@ -22,6 +22,7 @@ import com.example.velocityXAndroid.ui.theme.VxTheme
 import dev.codepur.velocityx.Vx
 import dev.codepur.velocityx.compose.HStack
 import dev.codepur.velocityx.compose.VxBox
+import dev.codepur.velocityx.compose.VxSpacer
 import dev.codepur.velocityx.compose.text
 
 class MainActivity : ComponentActivity() {
@@ -44,7 +45,6 @@ class MainActivity : ComponentActivity() {
 
 @Composable
 fun Greeting(name: String) {
-
     HStack {
         VxBox(
             children = {
@@ -52,13 +52,14 @@ fun Greeting(name: String) {
             },
         ).blue600.alignCenter.p12.square(size = 200.dp)
             .border(color = Vx.white, shape = CircleShape).circle.shadow4Xl.make()
+        VxSpacer().red300.w20().make()
         VxBox(
             children = {
                 "Hello $name".text.white.center.xl3.italic.make()
             },
         ).blue600.alignCenter.p12.square(size = 200.dp)
             .border(color = Vx.white, shape = CircleShape).circle.shadow4Xl.make()
-    }.red400.make()
+    }.purple800.make()
 
 }
 
