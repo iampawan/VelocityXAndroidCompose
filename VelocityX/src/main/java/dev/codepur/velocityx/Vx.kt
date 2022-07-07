@@ -2,6 +2,7 @@ package dev.codepur.velocityx
 
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import java.util.*
 
@@ -9,25 +10,25 @@ class Vx {
 
     /// Pixel Values
     companion object {
-        const val dp0: Double = 0.0
-        const val dp2: Double = 2.0
-        const val dp1: Double = 1.0
-        const val dp3: Double = 3.0
-        const val dp4: Double = 4.0
-        const val dp5: Double = 5.0
-        const val dp6: Double = 6.0
-        const val dp8: Double = 8.0
-        const val dp10: Double = 10.0
-        const val dp12: Double = 12.0
-        const val dp14: Double = 14.0
-        const val dp16: Double = 16.0
-        const val dp20: Double = 20.0
-        const val dp24: Double = 24.0
-        const val dp32: Double = 32.0
-        const val dp40: Double = 40.0
-        const val dp48: Double = 48.0
-        const val dp56: Double = 56.0
-        const val dp64: Double = 64.0
+        val dp0: Dp = 0.0.dp
+        val dp2: Dp = 2.0.dp
+        val dp1: Dp = 1.0.dp
+        val dp3: Dp = 3.0.dp
+        val dp4: Dp = 4.0.dp
+        val dp5: Dp = 5.0.dp
+        val dp6: Dp = 6.0.dp
+        val dp8: Dp = 8.0.dp
+        val dp10: Dp = 10.0.dp
+        val dp12: Dp = 12.0.dp
+        val dp14: Dp = 14.0.dp
+        val dp16: Dp = 16.0.dp
+        val dp20: Dp = 20.0.dp
+        val dp24: Dp = 24.0.dp
+        val dp32: Dp = 32.0.dp
+        val dp40: Dp = 40.0.dp
+        val dp48: Dp = 48.0.dp
+        val dp56: Dp = 56.0.dp
+        val dp64: Dp = 64.0.dp
 
         ///Colors
         const val blackHex: String = "#000000"
