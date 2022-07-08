@@ -16,6 +16,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.velocityXAndroid.ui.theme.VxTheme
 import dev.codepur.velocityx.Vx
@@ -41,7 +42,7 @@ class MainActivity : ComponentActivity() {
 
 @Composable
 fun Greeting(name: String) {
-    VxRow {
+    VxColumn {
         VxCard {
             VxBox(
                 children = {
@@ -54,7 +55,7 @@ fun Greeting(name: String) {
         }.blue300.p16.make()
 
         WidthBox(20)
-        VxImage(R.drawable.flpy).fitInside.circle.make()
+        VxImage(R.drawable.flpy).crop.circle.size(200.dp).make()
     }.arrangeSpaceAround.alignCenterVertical.linearGradient(
         colors = listOf(
             Vx.amber100,
