@@ -19,24 +19,13 @@ import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import dev.codepur.velocityx.Vx
 
-interface IVxModifierMixin<T> {
+interface IVxModifierMixin<T> : IVxPaddingMixin<T>, IVxTransformMixin<T>,
+    IVxSizeMixin<T>, IVxGradientMixin<T> {
     var velocityModifier: Modifier?
     fun setChildForModifier(child: T)
     fun modifier(value: Modifier): T
     fun withRounded(value: Dp): T
     fun withShadow(value: Dp): T
-    fun p(value: Dp): T
-    fun px(value: Dp): T
-    fun py(value: Dp): T
-    fun pxy(value1: Dp, value2: Dp): T
-    fun pLTRB(left: Dp, top: Dp, right: Dp, bottom: Dp): T
-    fun pBaseline(top: Dp, bottom: Dp): T
-    fun width(value: Dp): T
-    fun size(value: Dp): T
-    fun size(width: Dp, height: Dp): T
-    fun sizeIn(minWidth: Dp, maxWidth: Dp, minHeight: Dp, maxHeight: Dp): T
-    fun aspectRatio(ratio: Float, matchHeightConstraintsFirst: Boolean = false): T
-    fun offset(x: Dp, y: Dp): T
     fun clip(shape: Shape): T
     fun bg(color: Color, shape: Shape = RectangleShape): T
     fun clickable(onClick: () -> Unit, enabled: Boolean = true): T
@@ -47,9 +36,6 @@ interface IVxModifierMixin<T> {
         shape: Shape? = RectangleShape,
     ): T
 
-    fun rotate(degrees: Float): T
-    fun scale(x: Float, y: Float): T
-    fun scale(scale: Float): T
     fun scrollHorizontal(
         state: ScrollState,
         enabled: Boolean = true,
@@ -62,28 +48,6 @@ interface IVxModifierMixin<T> {
         enabled: Boolean = true,
         flingBehavior: FlingBehavior? = null,
         reverseScrolling: Boolean = false
-    ): T
-
-    fun linearGradient(
-        colorStops: Array<Pair<Float, Color>>? = null,
-        colors: List<Color>? = null,
-        start: Offset = Offset.Zero,
-        end: Offset = Offset.Infinite,
-        tileMode: TileMode = TileMode.Clamp
-    ): T
-
-    fun radialGradient(
-        colorStops: Array<Pair<Float, Color>>?,
-        colors: List<Color>?,
-        center: Offset,
-        radius: Float,
-        tileMode: TileMode
-    ): T
-
-    fun sweepGradient(
-        colorStops: Array<Pair<Float, Color>>?,
-        colors: List<Color>?,
-        center: Offset,
     ): T
 
 
@@ -100,60 +64,6 @@ interface IVxModifierMixin<T> {
     val circle: T
         get() = clip(shape = CircleShape)
 
-    /// Rotation
-    val rotate0: T
-        get() = rotate(0f)
-    val rotate15: T
-        get() = rotate(15f)
-    val rotateN15: T
-        get() = rotate(-15f)
-    val rotate30: T
-        get() = rotate(30f)
-    val rotateN30: T
-        get() = rotate(-30f)
-    val rotate45: T
-        get() = rotate(45f)
-    val rotateN45: T
-        get() = rotate(-45f)
-    val rotate60: T
-        get() = rotate(60f)
-    val rotateN60: T
-        get() = rotate(-60f)
-    val rotate75: T
-        get() = rotate(75f)
-    val rotateN75: T
-        get() = rotate(-75f)
-    val rotate90: T
-        get() = rotate(90f)
-    val rotateN90: T
-        get() = rotate(-90f)
-    val rotate120: T
-        get() = rotate(120f)
-    val rotateN120: T
-        get() = rotate(-120f)
-    val rotate180: T
-        get() = rotate(180f)
-    val rotateN180: T
-        get() = rotate(-180f)
-    val rotate270: T
-        get() = rotate(270f)
-    val rotateN270: T
-        get() = rotate(-270f)
-
-
-    /// Scaling
-    val scale0: T
-        get() = scale(0f, y = 0f)
-    val scale50: T
-        get() = scale(0.5f, y = 0.5f)
-    val scale100: T
-        get() = scale(1f, y = 1f)
-    val scale150: T
-        get() = scale(1.5f, y = 1.5f)
-    val scale200: T
-        get() = scale(2f, y = 2f)
-    val scaleN200: T
-        get() = scale(-2f, y = -2f)
 
     /// Shadow
     val shadowXs: T
@@ -182,316 +92,10 @@ interface IVxModifierMixin<T> {
     val shadowMax: T
         get() = withShadow(24.dp)
 
-    /// Padding for all
-    val p0: T
-        get() = p(0.dp)
-    val p1: T
-        get() = p(1.dp)
-    val p2: T
-        get() = p(2.dp)
-    val p4: T
-        get() = p(4.dp)
-    val p8: T
-        get() = p(8.dp)
-    val p12: T
-        get() = p(12.dp)
-    val p16: T
-        get() = p(16.dp)
-    val p20: T
-        get() = p(20.dp)
-    val p24: T
-        get() = p(24.dp)
-    val p32: T
-        get() = p(32.dp)
-    val p64: T
-        get() = p(64.dp)
-
-    /// Horizontal padding
-    val px0: T
-        get() = px(0.dp)
-    val px1: T
-        get() = px(1.dp)
-    val px2: T
-        get() = px(2.dp)
-    val px4: T
-        get() = px(4.dp)
-    val px8: T
-        get() = px(8.dp)
-    val px12: T
-        get() = px(12.dp)
-    val px16: T
-        get() = px(16.dp)
-    val px20: T
-        get() = px(20.dp)
-    val px24: T
-        get() = px(24.dp)
-    val px32: T
-        get() = px(32.dp)
-    val px64: T
-        get() = px(64.dp)
-
-    /// Vertical padding
-    val py0: T
-        get() = py(0.dp)
-    val py1: T
-        get() = py(1.dp)
-    val py2: T
-        get() = py(2.dp)
-    val py4: T
-        get() = py(4.dp)
-    val py8: T
-        get() = py(8.dp)
-    val py12: T
-        get() = py(12.dp)
-    val py16: T
-        get() = py(16.dp)
-    val py20: T
-        get() = py(20.dp)
-    val py24: T
-        get() = py(24.dp)
-    val py32: T
-        get() = py(32.dp)
-    val py64: T
-        get() = py(64.dp)
-
-
-    /// Horizontal & Vertical padding
-    val pxy0: T
-        get() = pxy(0.dp, 0.dp)
-    val pxy1: T
-        get() = pxy(1.dp, 1.dp)
-    val pxy2: T
-        get() = pxy(2.dp, 2.dp)
-    val pxy4: T
-        get() = pxy(4.dp, 4.dp)
-    val pxy8: T
-        get() = pxy(8.dp, 8.dp)
-    val pxy12: T
-        get() = pxy(12.dp, 12.dp)
-    val pxy16: T
-        get() = pxy(16.dp, 16.dp)
-    val pxy20: T
-        get() = pxy(20.dp, 20.dp)
-    val pxy24: T
-        get() = pxy(24.dp, 24.dp)
-    val pxy32: T
-        get() = pxy(32.dp, 32.dp)
-    val pxy64: T
-        get() = pxy(64.dp, 64.dp)
-
-    fun fillMaxWidth(fraction: Float): T
-    fun fillMaxHeight(fraction: Float): T
-    fun fillMaxSize(fraction: Float): T
-
-    @Composable
-    fun wPCT(w: Number): T
-
-    @Composable
-    fun hPCT(h: Number): T
-
-    @Composable
-    fun whPCT(v: Number): T
-
-    @Composable
-    fun forcedWidth(width: Dp): T
-
-    @Composable
-    fun forcedHeight(height: Dp): T
-
-    @Composable
-    fun w0(): T
-
-    @Composable
-    fun w1(): T
-
-    @Composable
-    fun w2(): T
-
-    @Composable
-    fun w4(): T
-
-    @Composable
-    fun w8(): T
-
-    @Composable
-    fun w10(): T
-
-    @Composable
-    fun w12(): T
-
-    @Composable
-    fun w16(): T
-
-    @Composable
-    fun w20(): T
-
-    @Composable
-    fun w24(): T
-
-    @Composable
-    fun w32(): T
-
-    @Composable
-    fun w40(): T
-
-    @Composable
-    fun w48(): T
-
-    @Composable
-    fun w60(): T
-
-    @Composable
-    fun w75(): T
-
-    @Composable
-    fun wHalf(): T
-
-    @Composable
-    fun wOneThird(): T
-
-    @Composable
-    fun wTwoThird(): T
-
-    @Composable
-    fun wOneForth(): T
-
-    @Composable
-    fun wThreeForth(): T
-
-    @Composable
-    fun wFull(): T
-
-    @Composable
-    fun h0(): T
-
-    @Composable
-    fun h1(): T
-
-    @Composable
-    fun h2(): T
-
-    @Composable
-    fun h4(): T
-
-    @Composable
-    fun h8(): T
-
-    @Composable
-    fun h10(): T
-
-    @Composable
-    fun h12(): T
-
-    @Composable
-    fun h16(): T
-
-    @Composable
-    fun h20(): T
-
-    @Composable
-    fun h24(): T
-
-    @Composable
-    fun h32(): T
-
-    @Composable
-    fun h40(): T
-
-    @Composable
-    fun h48(): T
-
-    @Composable
-    fun h60(): T
-
-    @Composable
-    fun h75(): T
-
-    @Composable
-    fun hHalf(): T
-
-    @Composable
-    fun hOneThird(): T
-
-    @Composable
-    fun hThoThird(): T
-
-    @Composable
-    fun hOneForth(): T
-
-    @Composable
-    fun hThreeForth(): T
-
-    @Composable
-    fun hFull(): T
-
-    @Composable
-    fun wh0(): T
-
-    @Composable
-    fun wh1(): T
-
-    @Composable
-    fun wh2(): T
-
-    @Composable
-    fun wh4(): T
-
-    @Composable
-    fun wh8(): T
-
-    @Composable
-    fun wh10(): T
-
-    @Composable
-    fun wh12(): T
-
-    @Composable
-    fun wh16(): T
-
-    @Composable
-    fun wh20(): T
-
-    @Composable
-    fun wh24(): T
-
-    @Composable
-    fun wh32(): T
-
-    @Composable
-    fun wh40(): T
-
-    @Composable
-    fun wh48(): T
-
-    @Composable
-    fun wh60(): T
-
-    @Composable
-    fun wh75(): T
-
-    @Composable
-    fun whHalf(): T
-
-    @Composable
-    fun whOneThird(): T
-
-    @Composable
-    fun whTwoThird(): T
-
-    @Composable
-    fun whOneForth(): T
-
-    @Composable
-    fun whThreeForth(): T
-
-    @Composable
-    fun whFull(): T
-
-    @Composable
-    fun square(size: Dp): T
 }
 
-class VxModifierMixin<T> : IVxModifierMixin<T> {
+class VxModifierMixin<T> : IVxModifierMixin<T>, IVxPaddingMixin<T>, IVxTransformMixin<T>,
+    IVxSizeMixin<T>, IVxGradientMixin<T> {
     private var _child: T? = null
     override var velocityModifier: Modifier? = null
 
@@ -500,6 +104,7 @@ class VxModifierMixin<T> : IVxModifierMixin<T> {
     }
 
     override fun fillMaxWidth(fraction: Float): T {
+
         velocityModifier = if (velocityModifier != null) {
             velocityModifier!!
                 .fillMaxWidth(fraction = fraction)
@@ -532,195 +137,6 @@ class VxModifierMixin<T> : IVxModifierMixin<T> {
         return _child!!
     }
 
-    @Composable
-    override fun w0(): T = wPCT(w = 0.0)
-
-    @Composable
-    override fun w1(): T = wPCT(w = 1.0)
-
-    @Composable
-    override fun w2(): T = wPCT(w = 2.0)
-
-    @Composable
-    override fun w4(): T = wPCT(w = 4.0)
-
-    @Composable
-    override fun w8(): T = wPCT(w = 8.0)
-
-    @Composable
-    override fun w10(): T = wPCT(w = 10.0)
-
-    @Composable
-    override fun w12(): T = wPCT(w = 12.0)
-
-    @Composable
-    override fun w16(): T = wPCT(w = 16.0)
-
-    @Composable
-    override fun w20(): T = wPCT(w = 20.0)
-
-    @Composable
-    override fun w24(): T = wPCT(w = 24.0)
-
-    @Composable
-    override fun w32(): T = wPCT(w = 32.0)
-
-    @Composable
-    override fun w40(): T = wPCT(w = 40.0)
-
-    @Composable
-    override fun w48(): T = wPCT(w = 48.0)
-
-    @Composable
-    override fun w60(): T = wPCT(w = 60.0)
-
-    @Composable
-    override fun w75(): T = wPCT(w = 75.0)
-
-    @Composable
-    override fun wHalf(): T = wPCT(w = 50.0)
-
-    @Composable
-    override fun wOneThird(): T = wPCT(w = 33.33)
-
-    @Composable
-    override fun wTwoThird(): T = wPCT(w = 66.66)
-
-    @Composable
-    override fun wOneForth(): T = wPCT(w = 23.0)
-
-    @Composable
-    override fun wThreeForth(): T = wPCT(w = 75.0)
-
-    @Composable
-    override fun wFull(): T = wPCT(w = 100.0)
-
-
-    @Composable
-    override fun h0(): T = hPCT(h = 0.0)
-
-    @Composable
-    override fun h1(): T = hPCT(h = 1.0)
-
-    @Composable
-    override fun h2(): T = hPCT(h = 2.0)
-
-    @Composable
-    override fun h4(): T = hPCT(h = 4.0)
-
-    @Composable
-    override fun h8(): T = hPCT(h = 8.0)
-
-    @Composable
-    override fun h10(): T = hPCT(h = 10.0)
-
-    @Composable
-    override fun h12(): T = hPCT(h = 12.0)
-
-    @Composable
-    override fun h16(): T = hPCT(h = 16.0)
-
-    @Composable
-    override fun h20(): T = hPCT(h = 20.0)
-
-    @Composable
-    override fun h24(): T = hPCT(h = 24.0)
-
-    @Composable
-    override fun h32(): T = hPCT(h = 32.0)
-
-    @Composable
-    override fun h40(): T = hPCT(h = 40.0)
-
-    @Composable
-    override fun h48(): T = hPCT(h = 48.0)
-
-    @Composable
-    override fun h60(): T = hPCT(h = 60.0)
-
-    @Composable
-    override fun h75(): T = hPCT(h = 75.0)
-
-    @Composable
-    override fun hHalf(): T = hPCT(h = 50.0)
-
-    @Composable
-    override fun hOneThird(): T = hPCT(h = 33.33)
-
-    @Composable
-    override fun hThoThird(): T = hPCT(h = 66.66)
-
-    @Composable
-    override fun hOneForth(): T = hPCT(h = 23.0)
-
-    @Composable
-    override fun hThreeForth(): T = hPCT(h = 75.0)
-
-    @Composable
-    override fun hFull(): T = hPCT(h = 100.0)
-
-    @Composable
-    override fun wh0(): T = whPCT(v = 0.0)
-
-    @Composable
-    override fun wh1(): T = whPCT(v = 1.0)
-
-    @Composable
-    override fun wh2(): T = whPCT(v = 2.0)
-
-    @Composable
-    override fun wh4(): T = whPCT(v = 4.0)
-
-    @Composable
-    override fun wh8(): T = whPCT(v = 8.0)
-
-    @Composable
-    override fun wh10(): T = whPCT(v = 10.0)
-
-    @Composable
-    override fun wh12(): T = whPCT(v = 12.0)
-
-    @Composable
-    override fun wh16(): T = whPCT(v = 16.0)
-
-    @Composable
-    override fun wh20(): T = whPCT(v = 20.0)
-
-    @Composable
-    override fun wh24(): T = whPCT(v = 24.0)
-
-    @Composable
-    override fun wh32(): T = whPCT(v = 32.0)
-
-    @Composable
-    override fun wh40(): T = whPCT(v = 40.0)
-
-    @Composable
-    override fun wh48(): T = whPCT(v = 48.0)
-
-    @Composable
-    override fun wh60(): T = whPCT(v = 60.0)
-
-    @Composable
-    override fun wh75(): T = whPCT(v = 75.0)
-
-    @Composable
-    override fun whHalf(): T = whPCT(v = 50.0)
-
-    @Composable
-    override fun whOneThird(): T = whPCT(v = 33.33)
-
-    @Composable
-    override fun whTwoThird(): T = whPCT(v = 66.66)
-
-    @Composable
-    override fun whOneForth(): T = whPCT(v = 23.0)
-
-    @Composable
-    override fun whThreeForth(): T = whPCT(v = 75.0)
-
-    @Composable
-    override fun whFull(): T = whPCT(v = 100.0)
 
     override fun offset(x: Dp, y: Dp): T {
         velocityModifier = if (velocityModifier != null) {
@@ -955,6 +371,7 @@ class VxModifierMixin<T> : IVxModifierMixin<T> {
 
         return _child!!
     }
+
 
     override fun size(width: Dp, height: Dp): T {
         velocityModifier = if (velocityModifier != null) {

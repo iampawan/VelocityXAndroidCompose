@@ -12,8 +12,9 @@ import dev.codepur.velocityx.mixin.*
 open class VxBoxAddOn<T>(
     colorMixin: IVxColorMixin<T> = VxColorMixin(),
     alignmentMixin: IVxAlignmentMixin<T> = VxAlignmentMixin(),
-    modifierMixin: IVxModifierMixin<T> = VxModifierMixin()
-) :
+    modifierMixin: IVxModifierMixin<T> = VxModifierMixin(),
+
+    ) :
     IVxColorMixin<T> by colorMixin, IVxAlignmentMixin<T> by alignmentMixin,
     IVxModifierMixin<T> by modifierMixin
 
@@ -44,7 +45,7 @@ class VxBox(
             modifier = currentModifier
         ) {
             children.invoke(this)
-            
+
         }
     }
 

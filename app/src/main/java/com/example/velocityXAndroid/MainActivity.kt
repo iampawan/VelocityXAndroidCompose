@@ -50,13 +50,13 @@ fun Greeting(name: String) {
                 },
             ).blue600.alignCenter.p12.square(size = Vx.dp(100))
                 .border(color = Vx.white).make()
-        }.blue300.p16.make()
+        }.modifier(Modifier.weight(1f)).blue300.p16.make()
         WidthBox(20)
         VxBox(
             children = {
                 "Hello $name".text.white.center.xl3.italic.make()
             },
-        ).blue600.alignCenter.p16.square(size = 100.dp)
+        ).modifier(Modifier.weight(2f)).blue600.alignCenter.p16.square(size = 100.dp)
             .border(color = Vx.white, shape = CircleShape).circle.shadow4Xl.make()
     }.arrangeSpaceAround.alignCenterVertical.white.h32().make()
 
