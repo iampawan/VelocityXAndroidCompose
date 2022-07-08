@@ -6,7 +6,6 @@ import androidx.activity.compose.setContent
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
@@ -16,7 +15,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.velocityXAndroid.ui.theme.VxTheme
 import dev.codepur.velocityx.Vx
@@ -48,16 +46,15 @@ fun Greeting(name: String) {
                 children = {
                     "Hello $name".text.white.center.xl3.italic.make()
                 },
-            ).blue600.alignCenter.p12.square(size = Vx.dp(100))
-                .border(color = Vx.white).make()
-        }.modifier(Modifier.weight(1f)).blue300.p16.make()
+            ).linearGradient(
+                colors = listOf(
+                    Vx.amber100,
+                    Vx.cyan500
+                )
+            ).alignCenter.p12.square(size = Vx.dp(100))
+                .border(color = Vx.white).rotate45.make()
+        }.blue300.p16.make()
         WidthBox(20)
-        VxBox(
-            children = {
-                "Hello $name".text.white.center.xl3.italic.make()
-            },
-        ).modifier(Modifier.weight(2f)).blue600.alignCenter.p16.square(size = 100.dp)
-            .border(color = Vx.white, shape = CircleShape).circle.shadow4Xl.make()
     }.arrangeSpaceAround.alignCenterVertical.white.h32().make()
 
 }

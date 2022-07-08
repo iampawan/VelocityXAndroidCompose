@@ -8,8 +8,6 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
-import androidx.compose.ui.draw.rotate
-import androidx.compose.ui.draw.scale
 import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.graphics.*
@@ -94,13 +92,16 @@ interface IVxModifierMixin<T> : IVxPaddingMixin<T>, IVxTransformMixin<T>,
 
 }
 
-class VxModifierMixin<T> : IVxModifierMixin<T>, IVxPaddingMixin<T>, IVxTransformMixin<T>,
-    IVxSizeMixin<T>, IVxGradientMixin<T> {
+class VxModifierMixin<T> : IVxModifierMixin<T> {
     private var _child: T? = null
     override var velocityModifier: Modifier? = null
+    private var vxTransform: IVxTransformMixin<T>? = null
+    private var vxGradient: IVxGradientMixin<T>? = null
 
     override fun setChildForModifier(child: T) {
         _child = child
+        vxTransform = VxTransformMixin<T>(this, _child = child)
+        vxGradient = VxGradientMixin<T>(this, _child = child)
     }
 
     override fun fillMaxWidth(fraction: Float): T {
@@ -413,35 +414,6 @@ class VxModifierMixin<T> : IVxModifierMixin<T>, IVxPaddingMixin<T>, IVxTransform
         return _child!!
     }
 
-    override fun rotate(degrees: Float): T {
-        velocityModifier = if (velocityModifier != null) {
-            velocityModifier!!.rotate(degrees = degrees)
-        } else {
-            Modifier.rotate(degrees = degrees)
-        }
-
-        return _child!!
-    }
-
-    override fun scale(x: Float, y: Float): T {
-        velocityModifier = if (velocityModifier != null) {
-            velocityModifier!!.scale(scaleX = x, scaleY = y)
-        } else {
-            Modifier.scale(scaleX = x, scaleY = y)
-        }
-
-        return _child!!
-    }
-
-    override fun scale(scale: Float): T {
-        velocityModifier = if (velocityModifier != null) {
-            velocityModifier!!.scale(scale)
-        } else {
-            Modifier.scale(scale)
-        }
-
-        return _child!!
-    }
 
     override fun testTag(tag: String): T {
         velocityModifier = if (velocityModifier != null) {
@@ -508,6 +480,19 @@ class VxModifierMixin<T> : IVxModifierMixin<T>, IVxPaddingMixin<T>, IVxTransform
         return _child!!
     }
 
+
+    override fun rotate(degrees: Float): T {
+        return vxTransform!!.rotate(degrees)
+    }
+
+    override fun scale(x: Float, y: Float): T {
+        return vxTransform!!.scale(x, y)
+    }
+
+    override fun scale(scale: Float): T {
+        return vxTransform!!.scale(scale)
+    }
+
     override fun linearGradient(
         colorStops: Array<Pair<Float, Color>>?,
         colors: List<Color>?,
@@ -515,53 +500,7 @@ class VxModifierMixin<T> : IVxModifierMixin<T>, IVxPaddingMixin<T>, IVxTransform
         end: Offset,
         tileMode: TileMode
     ): T {
-        velocityModifier = if (velocityModifier != null) {
-            if (colorStops != null) {
-                velocityModifier!!.background(
-                    brush = Brush.linearGradient(
-                        colorStops = colorStops,
-                        start = start,
-                        end = end,
-                        tileMode = tileMode,
-
-                        )
-                )
-            } else {
-                velocityModifier!!.background(
-                    brush = Brush.linearGradient(
-                        colors = colors!!,
-                        start = start,
-                        end = end,
-                        tileMode = tileMode
-
-                    )
-                )
-            }
-
-        } else {
-            if (colorStops != null) {
-                Modifier.background(
-                    brush = Brush.linearGradient(
-                        colorStops = colorStops,
-                        start = start,
-                        end = end,
-                        tileMode = tileMode
-
-                    )
-                )
-            } else {
-                Modifier.background(
-                    brush = Brush.linearGradient(
-                        colors = colors!!,
-                        start = start,
-                        end = end,
-                        tileMode = tileMode
-                    )
-                )
-            }
-        }
-
-        return _child!!
+        return vxGradient!!.linearGradient(colorStops, colors, start, end, tileMode)
     }
 
     override fun radialGradient(
@@ -571,77 +510,15 @@ class VxModifierMixin<T> : IVxModifierMixin<T>, IVxPaddingMixin<T>, IVxTransform
         radius: Float,
         tileMode: TileMode
     ): T {
-        velocityModifier = if (velocityModifier != null) {
-            if (colorStops != null) {
-                velocityModifier!!.background(
-                    brush = Brush.radialGradient(
-                        colorStops = colorStops,
-                        center = center,
-                        radius = radius,
-                        tileMode = tileMode
-
-                    )
-                )
-            } else {
-                velocityModifier!!.background(
-                    brush = Brush.radialGradient(
-                        colors = colors!!, radius = radius, center = center, tileMode = tileMode
-
-                    )
-                )
-            }
-
-        } else {
-            if (colorStops != null) {
-                Modifier.background(
-                    brush = Brush.radialGradient(
-                        colorStops = colorStops,
-                        center = center,
-                        radius = radius,
-                        tileMode = tileMode
-                    )
-                )
-            } else {
-                Modifier.background(
-                    brush = Brush.radialGradient(
-                        colors = colors!!, radius = radius, center = center, tileMode = tileMode
-                    )
-                )
-            }
-        }
-
-        return _child!!
+        return vxGradient!!.radialGradient(colorStops, colors, center, radius, tileMode)
     }
 
     override fun sweepGradient(
         colorStops: Array<Pair<Float, Color>>?,
         colors: List<Color>?,
-        center: Offset,
+        center: Offset
     ): T {
-        velocityModifier = if (velocityModifier != null) {
-            if (colorStops != null) {
-                velocityModifier!!.background(
-                    brush = Brush.sweepGradient(colorStops = colorStops, center = center)
-                )
-            } else {
-                velocityModifier!!.background(
-                    brush = Brush.sweepGradient(colors = colors!!, center = center)
-                )
-            }
-
-        } else {
-            if (colorStops != null) {
-                Modifier.background(
-                    brush = Brush.sweepGradient(colorStops = colorStops, center = center)
-                )
-            } else {
-                Modifier.background(
-                    brush = Brush.sweepGradient(colors = colors!!, center = center)
-                )
-            }
-        }
-
-        return _child!!
+        return vxGradient!!.sweepGradient(colorStops, colors, center)
     }
 
 

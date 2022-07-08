@@ -1,5 +1,9 @@
 package dev.codepur.velocityx.mixin
 
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.rotate
+import androidx.compose.ui.draw.scale
+
 interface IVxTransformMixin<T> {
     fun rotate(degrees: Float): T
     fun scale(x: Float, y: Float): T
@@ -59,4 +63,38 @@ interface IVxTransformMixin<T> {
         get() = scale(2f, y = 2f)
     val scaleN200: T
         get() = scale(-2f, y = -2f)
+}
+
+class VxTransformMixin<T>(private var vxModifierMixin: VxModifierMixin<T>, private val _child: T?) :
+    IVxTransformMixin<T> {
+
+    override fun rotate(degrees: Float): T {
+        vxModifierMixin.velocityModifier = if (vxModifierMixin.velocityModifier != null) {
+            vxModifierMixin.velocityModifier!!.rotate(degrees = degrees)
+        } else {
+            Modifier.rotate(degrees = degrees)
+        }
+
+        return _child!!
+    }
+
+    override fun scale(x: Float, y: Float): T {
+        vxModifierMixin.velocityModifier = if (vxModifierMixin.velocityModifier != null) {
+            vxModifierMixin.velocityModifier!!.scale(scaleX = x, scaleY = y)
+        } else {
+            Modifier.scale(scaleX = x, scaleY = y)
+        }
+
+        return _child!!
+    }
+
+    override fun scale(scale: Float): T {
+        vxModifierMixin.velocityModifier = if (vxModifierMixin.velocityModifier != null) {
+            vxModifierMixin.velocityModifier!!.scale(scale)
+        } else {
+            Modifier.scale(scale)
+        }
+
+        return _child!!
+    }
 }
