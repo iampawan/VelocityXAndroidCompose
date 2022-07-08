@@ -5,6 +5,7 @@ import androidx.compose.foundation.layout.Spacer
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
+import dev.codepur.velocityx.VxWidgetBuilder
 import dev.codepur.velocityx.mixin.IVxModifierMixin
 import dev.codepur.velocityx.mixin.VxModifierMixin
 
@@ -13,7 +14,7 @@ open class VxSpacerAddOn<T>(
 ) :
     IVxModifierMixin<T> by modifierMixin
 
-class VxSpacer : VxSpacerAddOn<VxSpacer>() {
+class VxSpacer : VxWidgetBuilder, VxSpacerAddOn<VxSpacer>() {
 
     init {
         setChildForModifier(this)
@@ -22,7 +23,7 @@ class VxSpacer : VxSpacerAddOn<VxSpacer>() {
 
     @SuppressLint("ComposableNaming")
     @Composable
-    fun make() {
+    override fun make() {
         val currentModifier = velocityModifier ?: Modifier
         return Spacer(modifier = currentModifier)
     }

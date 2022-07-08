@@ -12,6 +12,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Shape
 import androidx.compose.ui.unit.dp
+import dev.codepur.velocityx.VxWidgetBuilder
 import dev.codepur.velocityx.mixin.*
 
 open class VxCardAddOn<T>(
@@ -32,7 +33,7 @@ class VxCard(
     private val children: @Composable ColumnScope.() -> Unit,
 
 
-    ) : VxCardAddOn<VxCard>() {
+    ) : VxWidgetBuilder, VxCardAddOn<VxCard>() {
 
     init {
         setChildToColor(this)
@@ -44,7 +45,7 @@ class VxCard(
     @OptIn(ExperimentalMaterial3Api::class)
     @SuppressLint("ComposableNaming")
     @Composable
-    fun make() {
+    override fun make() {
         if (colors == null) {
             colors = CardDefaults.cardColors()
         }

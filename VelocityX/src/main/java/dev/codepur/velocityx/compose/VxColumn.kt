@@ -8,6 +8,7 @@ import androidx.compose.foundation.layout.ColumnScope
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import dev.codepur.velocityx.VxWidgetBuilder
 import dev.codepur.velocityx.mixin.*
 
 
@@ -23,7 +24,7 @@ open class VxColumnAddOn<T>(
 class VxColumn(
     private val children: @Composable ColumnScope.() -> Unit
 
-) : VxColumnAddOn<VxColumn>() {
+) : VxWidgetBuilder, VxColumnAddOn<VxColumn>() {
 
     init {
         setChildToColor(this)
@@ -34,7 +35,7 @@ class VxColumn(
 
     @SuppressLint("ComposableNaming")
     @Composable
-    fun make() {
+    override fun make() {
         var currentModifier = velocityModifier ?: Modifier
         if (velocityColor != null) {
             currentModifier = currentModifier

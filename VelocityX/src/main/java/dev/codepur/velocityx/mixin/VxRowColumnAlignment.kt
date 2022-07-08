@@ -2,6 +2,7 @@ package dev.codepur.velocityx.mixin
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.ui.Alignment
+import androidx.compose.ui.unit.dp
 
 interface IVxRowColumnAlignmentMixin<T> {
 
@@ -52,8 +53,12 @@ interface IVxRowColumnAlignmentMixin<T> {
     val alignEnd: T
         get() = horizontalAlignment(value = Alignment.End)
 
-
+    fun arrangeSpacedBy(spacing: Number): T =
+        horizontalArrangement(value = Arrangement.spacedBy(spacing.toDouble().dp))
+    
     fun setChildForRowColumnAlignment(child: T)
+
+    fun arrangement(value: Arrangement.HorizontalOrVertical): T
 
     fun horizontalArrangement(value: Arrangement.Horizontal): T
 
@@ -75,6 +80,12 @@ class VxRowColumnAlignmentMixin<T> : IVxRowColumnAlignmentMixin<T> {
 
     override fun setChildForRowColumnAlignment(child: T) {
         _child = child
+    }
+
+    override fun arrangement(value: Arrangement.HorizontalOrVertical): T {
+        horizontalArrangement = value
+        verticalArrangement = value
+        return _child!!
     }
 
     override fun horizontalArrangement(value: Arrangement.Horizontal): T {

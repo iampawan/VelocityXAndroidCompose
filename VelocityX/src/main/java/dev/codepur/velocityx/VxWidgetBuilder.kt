@@ -1,4 +1,4 @@
-package dev.codepur.velocityx.compose
+package dev.codepur.velocityx
 
 import android.annotation.SuppressLint
 import androidx.compose.runtime.Composable

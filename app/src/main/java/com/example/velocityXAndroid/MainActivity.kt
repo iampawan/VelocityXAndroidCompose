@@ -1,5 +1,6 @@
 package com.example.velocityXAndroid
 
+import VxImage
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
@@ -47,15 +48,19 @@ fun Greeting(name: String) {
                     "Hello $name".text.white.center.xl3.italic.make()
                 },
             ).linearGradient(
-                colors = listOf(
-                    Vx.amber100,
-                    Vx.cyan500
-                )
+                colors = listOf(Vx.amber100, Vx.cyan500)
             ).alignCenter.p12.square(size = Vx.dp(100))
-                .border(color = Vx.white).rotate45.make()
+                .border(color = Vx.white).make()
         }.blue300.p16.make()
+
         WidthBox(20)
-    }.arrangeSpaceAround.alignCenterVertical.white.h32().make()
+        VxImage(R.drawable.flpy).fitInside.circle.make()
+    }.arrangeSpaceAround.alignCenterVertical.linearGradient(
+        colors = listOf(
+            Vx.amber100,
+            Vx.cyan500
+        )
+    ).make()
 
 }
 

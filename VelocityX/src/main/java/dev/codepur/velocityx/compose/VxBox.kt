@@ -7,6 +7,7 @@ import androidx.compose.foundation.layout.BoxScope
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import dev.codepur.velocityx.VxWidgetBuilder
 import dev.codepur.velocityx.mixin.*
 
 open class VxBoxAddOn<T>(
@@ -21,7 +22,7 @@ open class VxBoxAddOn<T>(
 class VxBox(
     private val children: @Composable BoxScope.() -> Unit,
 
-    ) : VxBoxAddOn<VxBox>() {
+    ) : VxWidgetBuilder, VxBoxAddOn<VxBox>() {
 
     init {
         setChildToColor(this)
@@ -32,7 +33,7 @@ class VxBox(
 
     @SuppressLint("ComposableNaming")
     @Composable
-    fun make() {
+    override fun make() {
         var currentModifier = velocityModifier ?: Modifier
         if (velocityColor != null) {
             currentModifier = currentModifier
