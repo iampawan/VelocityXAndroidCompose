@@ -8,22 +8,19 @@ import androidx.compose.foundation.layout.RowScope
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import dev.codepur.velocityx.mixin.IVxColorMixin
-import dev.codepur.velocityx.mixin.IVxModifierMixin
-import dev.codepur.velocityx.mixin.VxColorMixin
-import dev.codepur.velocityx.mixin.VxModifierMixin
+import dev.codepur.velocityx.mixin.*
 
 
 open class VxRowAddOn<T>(
     colorMixin: IVxColorMixin<T> = VxColorMixin(),
-    modifierMixin: IVxModifierMixin<T> = VxModifierMixin()
+    modifierMixin: IVxModifierMixin<T> = VxModifierMixin(),
+    rowColumnAlignmentMixin: IVxRowColumnAlignmentMixin<T> = VxRowColumnAlignmentMixin(),
 ) :
     IVxColorMixin<T> by colorMixin,
-    IVxModifierMixin<T> by modifierMixin
+    IVxModifierMixin<T> by modifierMixin,
+    IVxRowColumnAlignmentMixin<T> by rowColumnAlignmentMixin
 
 class VxRow(
-    private val horizontalArrangement: Arrangement.Horizontal = Arrangement.Start,
-    private val verticalAlignment: Alignment.Vertical = Alignment.Top,
     private val children: @Composable RowScope.() -> Unit
 
 ) : VxRowAddOn<VxRow>() {
@@ -31,8 +28,9 @@ class VxRow(
     init {
         setChildToColor(this)
         setChildForModifier(this)
-
+        setChildForRowColumnAlignment(this)
     }
+
 
     @SuppressLint("ComposableNaming")
     @Composable
@@ -44,8 +42,8 @@ class VxRow(
 
         }
         return Row(
-            verticalAlignment = verticalAlignment,
-            horizontalArrangement = horizontalArrangement,
+            verticalAlignment = verticalAlignment ?: Alignment.Top,
+            horizontalArrangement = horizontalArrangement ?: Arrangement.Start,
             modifier = currentModifier,
         ) {
             children.invoke(this)

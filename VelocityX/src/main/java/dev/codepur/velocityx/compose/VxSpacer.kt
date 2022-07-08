@@ -31,27 +31,27 @@ class VxSpacer : VxSpacerAddOn<VxSpacer>() {
 }
 
 @Composable
-fun VxWidthBox(width: Number) {
+fun WidthBox(width: Number) {
     VxSpacer().forcedWidth(width.toDouble().dp).make()
 }
 
 @Composable
-fun VxWidthPCTBox(width: Number) {
+fun WidthPCTBox(width: Number) {
     VxSpacer().wPCT(width.toDouble()).make()
 }
 
 @Composable
-fun VxHeightBox(height: Number) {
+fun HeightBox(height: Number) {
     VxSpacer().forcedHeight(height.toDouble().dp).make()
 }
 
 @Composable
-fun VxHeightPCTBox(height: Number) {
+fun HeightPCTBox(height: Number) {
     VxSpacer().hPCT(height.toDouble()).make()
 }
 
 @Composable
-fun VxSquareBox(size: Number) {
+fun SquareBox(size: Number) {
     VxSpacer().forcedWidth(size.toDouble().dp).forcedHeight(size.toDouble().dp).make()
 }
 

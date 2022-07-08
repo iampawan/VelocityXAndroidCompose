@@ -3,7 +3,6 @@ package com.example.velocityXAndroid
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
-import androidx.compose.foundation.ScrollState
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
@@ -50,16 +49,16 @@ fun Greeting(name: String) {
                     "Hello $name".text.white.center.xl3.italic.make()
                 },
             ).blue600.alignCenter.p12.square(size = Vx.dp(100))
-                .border(color = Vx.white, shape = CircleShape).circle.shadow4Xl.make()
+                .border(color = Vx.white).make()
         }.blue300.p16.make()
-        VxWidthBox(20)
+        WidthBox(20)
         VxBox(
             children = {
                 "Hello $name".text.white.center.xl3.italic.make()
             },
         ).blue600.alignCenter.p16.square(size = 100.dp)
             .border(color = Vx.white, shape = CircleShape).circle.shadow4Xl.make()
-    }.purple800.scrollHorizontal(ScrollState(0)).make()
+    }.arrangeSpaceAround.alignCenterVertical.white.h32().make()
 
 }
 

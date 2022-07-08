@@ -8,22 +8,19 @@ import androidx.compose.foundation.layout.ColumnScope
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import dev.codepur.velocityx.mixin.IVxColorMixin
-import dev.codepur.velocityx.mixin.IVxModifierMixin
-import dev.codepur.velocityx.mixin.VxColorMixin
-import dev.codepur.velocityx.mixin.VxModifierMixin
+import dev.codepur.velocityx.mixin.*
 
 
 open class VxColumnAddOn<T>(
     colorMixin: IVxColorMixin<T> = VxColorMixin(),
-    modifierMixin: IVxModifierMixin<T> = VxModifierMixin()
+    modifierMixin: IVxModifierMixin<T> = VxModifierMixin(),
+    rowColumnAlignmentMixin: IVxRowColumnAlignmentMixin<T> = VxRowColumnAlignmentMixin(),
 ) :
     IVxColorMixin<T> by colorMixin,
-    IVxModifierMixin<T> by modifierMixin
+    IVxModifierMixin<T> by modifierMixin,
+    IVxRowColumnAlignmentMixin<T> by rowColumnAlignmentMixin
 
 class VxColumn(
-    private val horizontalAlignment: Alignment.Horizontal = Alignment.Start,
-    private val verticalArrangement: Arrangement.Vertical = Arrangement.Top,
     private val children: @Composable ColumnScope.() -> Unit
 
 ) : VxColumnAddOn<VxColumn>() {
@@ -31,6 +28,7 @@ class VxColumn(
     init {
         setChildToColor(this)
         setChildForModifier(this)
+        setChildForRowColumnAlignment(this)
 
     }
 
@@ -44,8 +42,8 @@ class VxColumn(
 
         }
         return Column(
-            verticalArrangement = verticalArrangement,
-            horizontalAlignment = horizontalAlignment,
+            verticalArrangement = verticalArrangement ?: Arrangement.Top,
+            horizontalAlignment = horizontalAlignment ?: Alignment.Start,
             modifier = currentModifier,
         ) {
             children.invoke(this)
