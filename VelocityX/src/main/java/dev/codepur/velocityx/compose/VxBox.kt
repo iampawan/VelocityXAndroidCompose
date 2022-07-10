@@ -21,8 +21,7 @@ open class VxBoxAddOn<T>(
 
 class VxBox(
     private val children: @Composable BoxScope.() -> Unit,
-
-    ) : VxWidgetBuilder, VxBoxAddOn<VxBox>() {
+) : VxWidgetBuilder, VxBoxAddOn<VxBox>() {
 
     init {
         setChildToColor(this)

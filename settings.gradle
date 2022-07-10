@@ -12,6 +12,6 @@ dependencyResolutionManagement {
         mavenCentral()
     }
 }
-rootProject.name = "JC1"
+rootProject.name = "VelocityXExample"
 include ':app'
 include ':VelocityX'
