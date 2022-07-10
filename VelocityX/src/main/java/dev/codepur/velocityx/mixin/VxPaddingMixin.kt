@@ -1,10 +1,12 @@
 package dev.codepur.velocityx.mixin
 
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 
 interface IVxPaddingMixin<T> {
     fun p(value: Dp): T
+    fun p(value: PaddingValues): T
     fun px(value: Dp): T
     fun py(value: Dp): T
     fun pxy(value1: Dp, value2: Dp): T

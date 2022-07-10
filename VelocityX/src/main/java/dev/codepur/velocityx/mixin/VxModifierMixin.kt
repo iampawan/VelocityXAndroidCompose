@@ -272,6 +272,16 @@ class VxModifierMixin<T> : IVxModifierMixin<T> {
         return _child!!
     }
 
+    override fun p(value: PaddingValues): T {
+        velocityModifier = if (velocityModifier != null) {
+            velocityModifier!!.padding(value)
+        } else {
+            Modifier.padding(value)
+        }
+
+        return _child!!
+    }
+
     override fun pLTRB(left: Dp, top: Dp, right: Dp, bottom: Dp): T {
         velocityModifier = if (velocityModifier != null) {
             velocityModifier!!.padding(start = left, top = top, end = right, bottom = bottom)
