@@ -7,13 +7,13 @@
 </p>
 <a href="https://www.producthunt.com/posts/velocityx?utm_source=badge-featured&utm_medium=badge&utm_souce=badge-velocityx" target="_blank"><img src="https://api.producthunt.com/widgets/embed-image/v1/featured.svg?post_id=289488&theme=light" alt="VelocityX - A minimalist framework | Product Hunt" style="width: 250px; height: 54px;" width="250" height="54" /></a>
 
-[![VelocityX](https://img.shields.io/badge/velocityx-fast-red)](https://github.com/iampawan/VelocityXAndroidCompose)
+[![VelocityX](https://img.shields.io/badge/velocityx-fast-red?style=for-the-badge)](https://github.com/iampawan/VelocityXAndroidCompose)
 
-[![GitHub Release Date](https://img.shields.io/github/release-date/iampawan/velocityx.svg?style=flat-square)](https://github.com/iampawan/VelocityXAndroidCompose)
-[![GitHub issues](https://img.shields.io/github/issues/iampawan/velocityx.svg?style=flat-square)](https://github.com/iampawan/VelocityXAndroidCompose/issues)
-[![GitHub top language](https://img.shields.io/github/languages/top/iampawan/velocityx.svg?style=flat-square)](https://github.com/iampawan/VelocityXAndroidCompose)
+[![GitHub Release Date](https://img.shields.io/github/release-date/iampawan/velocityXandroidcompose.svg?style=for-the-badge)](https://github.com/iampawan/VelocityXAndroidCompose)
+[![GitHub issues](https://img.shields.io/github/issues/iampawan/VelocityXAndroidCompose.svg?style=for-the-badge)](https://github.com/iampawan/VelocityXAndroidCompose/issues)
+[![GitHub top language](https://img.shields.io/github/languages/top/iampawan/VelocityXAndroidCompose.svg?style=for-the-badge)](https://github.com/iampawan/VelocityXAndroidCompose)
 
-<a href="https://discord.gg/9tXYvNq"><img src="https://img.shields.io/discord/746087597759004835.svg?logo=discord&color=blue" alt="Discord"></a>
+<a href="https://discord.gg/9tXYvNq"><img src="https://img.shields.io/discord/746087597759004835.svg?logo=discord&style=for-the-badge" alt="Discord"></a>
 
 ### Show some :heart: and star the repo.
 
@@ -28,7 +28,7 @@
 
 ---
 
-[**VelocityX**](https://velocityx.dev/) is a 100% free Flutter open-source minimalist UI Framework built with <a href="https://flutter.dev/" target="_blank">Flutter SDK</a> to make Flutter development easier and more joyful than ever.
+[**VelocityX**](https://velocityx.dev/) is a 100% free Jetpack open-source minimalist UI Framework built with <a href="https://developer.android.com/jetpack/compose/" target="_blank">Kotlin & Jetpack Compose</a> to make Android development easier and more joyful than ever.
 
 ## Inspired from Tailwindcss and Flutter
 
