@@ -49,14 +49,14 @@ fun VelocityXDemo() {
                 HeightBox(20)
                 VxBox {
                     "VxBox Example".text.white.bold.p16.xl2.make()
-                }.blue800.rounded.make()
+                }.blue800.wFull().p16.rounded.make()
                 HeightBox(20)
                 VxImage(R.drawable.flpy).fit.roundedLg.make()
                 HeightBox(20)
                 VxRow {
                     "VxRow Example".text.white.bold.p16.xl2.make()
                     WidthBox(20)
-                    VxImage(R.drawable.flpy).fit.circle.make()
+                    VxImage(R.drawable.flpy).fit.rounded.make()
                 }.blue800.rounded.make()
                 HeightBox(20)
                 VxCard {

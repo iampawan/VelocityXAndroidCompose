@@ -100,8 +100,8 @@ class VxModifierMixin<T> : IVxModifierMixin<T> {
 
     override fun setChildForModifier(child: T) {
         _child = child
-        vxTransform = VxTransformMixin<T>(this, _child = child)
-        vxGradient = VxGradientMixin<T>(this, _child = child)
+        vxTransform = VxTransformMixin(this, _child = child)
+        vxGradient = VxGradientMixin(this, _child = child)
     }
 
     override fun fillMaxWidth(fraction: Float): T {
