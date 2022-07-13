@@ -62,7 +62,9 @@ dependencies {
 
 ---
 
-## Examples
+## Usage
+
+- Check output by running Example App in Android Studio
 
 <details>
   <summary>Basic Example of VxText</summary>
@@ -113,6 +115,21 @@ dependencies {
 </details>
 
 <details>
+  <summary>Basic Example of VxRow</summary>
+<pre>
+
+```kotlin
+   VxRow {
+            "VxRow Example".text.white.bold.p16.xl2.make()
+            WidthBox(20)
+            VxImage(R.drawable.flpy).fit.rounded.make()
+        }.blue800.rounded.make()
+```
+
+</pre>
+</details>
+
+<details>
   <summary>Basic Example of VxColumn</summary>
 <pre>
 
@@ -136,6 +153,29 @@ dependencies {
                 "VxCard Example".text.blue800.bold.xl.p20.make()
                 }.make()
     }.p16.make()
+```
+
+</pre>
+</details>
+
+<details>
+  <summary>Basic Example of VxSpacer</summary>
+<pre>
+
+```kotlin
+  VxSpacer().w20().hFull().make()
+```
+
+</pre>
+</details>
+
+<details>
+  <summary>Basic Widgets to give space</summary>
+<pre>
+
+```kotlin
+  HeightBox(20)
+  WidthBox(20)
 ```
 
 </pre>

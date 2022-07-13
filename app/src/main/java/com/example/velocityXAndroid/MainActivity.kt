@@ -63,6 +63,7 @@ fun VelocityXDemo() {
                     "VxCard Example".text.blue800.bold.xl.p20.make()
                 }.make()
 
+
             }.p(pad).p16.make()
         },
 
