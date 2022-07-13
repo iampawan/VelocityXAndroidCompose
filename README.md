@@ -62,6 +62,77 @@ dependencies {
 
 ---
 
+## Examples
+
+<details>
+  <summary>Basic Example of VxText</summary>
+<pre>
+
+```kotlin
+"VxText Example".text.white.xl4.p16.bold.center.make()
+```
+
+</pre>
+</details>
+
+<details>
+  <summary>Basic Example of VxBox</summary>
+<pre>
+```kotlin
+ VxBox {
+    "VxBox Example".text.white.bold.p16.xl2.make()
+    }.blue800.wFull().p16.rounded.make()
+```
+</pre>
+</details>
+
+<details>
+  <summary>Basic Example of VxCard</summary>
+<pre>
+```kotlin
+ VxCard {
+        "VxCard Example".text.blue800.bold.xl.p20.make()
+    }.make()
+```
+</pre>
+</details>
+
+<details>
+  <summary>Basic Example of VxImage</summary>
+<pre>
+```kotlin
+  VxImage(R.drawable.flpy).fit.rounded.make()
+```
+</pre>
+</details>
+
+<details>
+  <summary>Basic Example of VxColumn</summary>
+<pre>
+```kotlin
+  VxColumn {
+            "VxText Example".text.blue800.bold.xl2.make()
+            HeightBox(20)
+            VxBox {
+                "VxBox Example".text.white.bold.p16.xl2.make()
+                }.blue800.wFull().p16.rounded.make()
+            HeightBox(20)
+            VxImage(R.drawable.flpy).fit.roundedLg.make()
+            HeightBox(20)
+            VxRow {
+                "VxRow Example".text.white.bold.p16.xl2.make()
+            WidthBox(20)
+            VxImage(R.drawable.flpy).fit.rounded.make()
+                }.blue800.rounded.make()
+            HeightBox(20)
+            VxCard {
+                "VxCard Example".text.blue800.bold.xl.p20.make()
+                }.make()
+    }.p16.make()
+```
+</pre>
+</details>
+
 ## Project Created & Maintained By
 
 ### Pawan Kumar
@@ -85,3 +156,11 @@ Google Developer Expert for Flutter. Passionate #Flutter, #Android Developer. #E
 ## Copyright-and-license
 
 Code and documentation Copyright 2022 Pawan Kumar. Code released under the [Apache License](./LICENSE). Docs released under [Creative Commons](https://creativecommons.org/licenses/by/3.0/).
+
+```
+
+```
+
+```
+
+```
