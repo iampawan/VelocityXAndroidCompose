@@ -10,6 +10,9 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import com.example.velocityXAndroid.ui.theme.VxTheme
 import dev.codepur.velocityx.compose.*
+import dev.codepur.velocityx.extensions.timeAgo
+import java.time.LocalDateTime
+import java.time.format.DateTimeFormatter
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -62,7 +65,10 @@ fun VelocityXDemo() {
                 VxCard {
                     "VxCard Example".text.blue800.bold.xl.p20.make()
                 }.make()
-
+                HeightBox(20)
+                VxCard {
+                    LocalDateTime.parse("2020-03-04 11:30:40", DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")).timeAgo(useShortForm=true).text.blue800.bold.xl.p20.make()
+                }.make()
 
             }.p(pad).p16.make()
         },
